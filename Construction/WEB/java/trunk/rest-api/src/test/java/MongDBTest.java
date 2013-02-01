@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 
 import org.junit.After;
@@ -6,6 +8,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.data.mongodb.core.MongoTemplate;
+
+import br.com.cygnus.exemplos.commons.enums.Marca;
+import br.com.cygnus.exemplos.persistence.model.Carro;
 
 import com.mongodb.Mongo;
 
@@ -38,7 +43,7 @@ public class MongDBTest {
 
       MongodStarter starter = MongodStarter.getInstance(config);
 
-      MongodExecutable mongoExecutable = starter.prepare(new MongodConfig(Version.V2_0_6, MONGO_TEST_PORT, false));
+      MongodExecutable mongoExecutable = starter.prepare(new MongodConfig(Version.V2_2_0, MONGO_TEST_PORT, false));
 
       mongoProcess = mongoExecutable.start();
 
@@ -68,6 +73,14 @@ public class MongDBTest {
 
    @Test
    public void test() {
+
+      Carro carro = new Carro(Long.valueOf(1), Marca.FORD, "modelo", "versao", "motor");
+
+      this.template.insert(carro);
+
+      Carro actual = this.template.findById(Long.valueOf(1), Carro.class);
+
+      assertEquals(Marca.FORD, actual.getMarca());
 
    }
 }

@@ -7,12 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.framework.template.dao.entity.AbstractEntity;
 
 /**
  * Representacao do Carro no banco de dados.
  */
+@Document
 @Entity
 @Table(name = "carro")
 public class Carro extends AbstractEntity {
@@ -20,6 +23,7 @@ public class Carro extends AbstractEntity {
    private static final long serialVersionUID = -3573142284798009093L;
 
    /** Identificador. */
+   @Id
    private Long id;
 
    private Marca marca;
@@ -64,7 +68,7 @@ public class Carro extends AbstractEntity {
     * @return {@link Long} identificador.
     */
    @Id
-   @GeneratedValue(strategy=GenerationType.SEQUENCE)
+   @GeneratedValue(strategy = GenerationType.SEQUENCE)
    @Column(name = "carro_id", unique = true, nullable = false)
    public Long getId() {
 
