@@ -30,6 +30,6 @@
   			c:mongo-ref="mongo" c:databaseName="${mongo.db.name}"/>
 	
 	<!-- Service for initializing MongoDB with sample data using MongoTemplate -->
-	<bean id="initMongoService" class="br.com.cygnus.exemplos.InitMongoService" init-method="init"/>	
+	<bean id="initMongoDB" class="br.com.cygnus.exemplos.helper.InitMongoDB" init-method="init"/>	
 	
 </beans>

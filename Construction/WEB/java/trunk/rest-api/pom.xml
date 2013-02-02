@@ -310,7 +310,7 @@
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
 			<version>1.26</version>
 			<type>jar</type>
-			<scope>test</scope>
+ 			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
