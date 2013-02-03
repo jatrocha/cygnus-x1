@@ -13,8 +13,12 @@ import br.com.cygnus.exemplos.datastore.CarroDataStore;
 @Service
 public class CarroManipulationBusiness implements DataManipulation<CarroDTO> {
 
+   //   @Resource(name="carroDataStore")
+   //   private DataStore<Carro> dataStore;
+
    @Resource
    private CarroDataStore dataStore;
+
 
    /**
     * @see br.com.cygnus.exemplos.business.DataManipulation#create(br.com.cygnus.framework.template.business.dto.AbstractDTO).

@@ -5,7 +5,7 @@
        	xmlns:c="http://www.springframework.org/schema/c"
        	xmlns:tx="http://www.springframework.org/schema/tx"
        	xmlns:context="http://www.springframework.org/schema/context"
-    	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    	   xmlns:mongo="http://www.springframework.org/schema/data/mongo"
        	xmlns:util="http://www.springframework.org/schema/util"
        	xsi:schemaLocation="
 			http://www.springframework.org/schema/beans 
@@ -14,13 +14,13 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
 			http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-3.1.xsd
-   			http://www.springframework.org/schema/data/mongo
-   			http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+   		http://www.springframework.org/schema/data/mongo
+   		http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
 			http://www.springframework.org/schema/util 
 			http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
 	<!-- Activate Spring Data MongoDB repository support -->
-  	<mongo:repositories base-package="br.com.cygnus.exemplos.persistence.model" />
+  	<mongo:repositories base-package="br.com.cygnus.exemplos.persistence.repository" />
   	
   	<!-- MongoDB host -->
 	<mongo:mongo host="${mongo.host.name}" port="${mongo.host.port}"/>

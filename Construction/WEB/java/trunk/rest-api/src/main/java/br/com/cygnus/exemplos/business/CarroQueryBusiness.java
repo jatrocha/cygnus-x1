@@ -21,6 +21,9 @@ import br.com.cygnus.framework.template.business.converter.Converter;
 @Service
 public class CarroQueryBusiness implements DataQuery<CarroFilterDTO, CarroDTO> {
 
+   //   @Resource(name="carroDataStore")
+   //   private CarroQuery dataStore;
+
    @Resource
    private CarroDataStore dataStore;
 
