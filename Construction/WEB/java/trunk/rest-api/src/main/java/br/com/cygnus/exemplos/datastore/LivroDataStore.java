@@ -1,15 +1,22 @@
 package br.com.cygnus.exemplos.datastore;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
+import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 import br.com.cygnus.framework.template.persistence.DataStore;
 
+/**
+ * Manipulação dos {@link LivroDTO} no repositório.
+ * 
+ * @see LivroRepository
+ */
 @Service
 public class LivroDataStore implements DataStore<Livro> {
 
@@ -79,6 +86,14 @@ public class LivroDataStore implements DataStore<Livro> {
    public Livro find(Class<Livro> entityClass, Serializable primaryKey) {
 
       return this.template.findById(primaryKey, entityClass);
+   }
+
+   /**
+    * @return all {@link Livro} found otherwise, will return <code>null</code>.
+    */
+   public List<Livro> findAll() {
+
+      return this.repository.findAll();
    }
 
 }

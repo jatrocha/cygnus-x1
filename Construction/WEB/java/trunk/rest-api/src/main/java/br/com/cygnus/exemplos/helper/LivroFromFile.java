@@ -14,7 +14,9 @@ import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
 /**
+ * Carrega a relacao de {@link Livro} a partir de um arquivo texto.
  * 
+ * @see Livro
  */
 public class LivroFromFile implements LoadFromFile<Livro> {
 

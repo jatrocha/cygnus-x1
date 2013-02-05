@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
@@ -58,7 +57,7 @@ public class CarroQueryResourceAdapterTest {
       this.resource.setBusiness(new CarroQueryBusiness() {
 
          @Override
-         public List<CarroDTO> list() {
+         public List<CarroDTO> findAll() {
 
             return CarroTestHelper.listar();
 
@@ -79,7 +78,7 @@ public class CarroQueryResourceAdapterTest {
       this.resource.setBusiness(new CarroQueryBusiness() {
 
          @Override
-         public List<CarroDTO> list() {
+         public List<CarroDTO> findAll() {
 
             return new ArrayList<CarroDTO>();
          }
@@ -93,7 +92,6 @@ public class CarroQueryResourceAdapterTest {
    }
 
    @Test
-   @Ignore
    public void testReadQuandoErroGeral() {
 
       this.resource.setBusiness(new CarroQueryBusiness() {

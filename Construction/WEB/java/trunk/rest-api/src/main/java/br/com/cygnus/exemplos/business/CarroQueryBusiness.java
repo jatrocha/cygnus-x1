@@ -21,10 +21,10 @@ import br.com.cygnus.framework.template.business.converter.Converter;
 @Service
 public class CarroQueryBusiness implements DataQuery<CarroFilterDTO, CarroDTO> {
 
-   //   @Resource(name="carroDataStore")
-   //   private CarroQuery dataStore;
+   // @Resource(name="carroDataStore")
+   // private CarroQuery dataStore;
 
-   @Resource
+   @Resource(name = "carroDataStore")
    private CarroDataStore dataStore;
 
    /**
@@ -41,7 +41,7 @@ public class CarroQueryBusiness implements DataQuery<CarroFilterDTO, CarroDTO> {
     */
    @Override
    @Transactional(propagation = Propagation.NEVER)
-   public List<CarroDTO> list() {
+   public List<CarroDTO> findAll() {
 
       final List<Carro> list = this.dataStore.list();
 

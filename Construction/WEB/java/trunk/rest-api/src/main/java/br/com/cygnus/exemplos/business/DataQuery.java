@@ -27,7 +27,7 @@ public interface DataQuery<F extends AbstractFilterDTO, D extends AbstractDTO> e
     * 
     * @return lista de registros.
     */
-   List<D> list();
+   List<D> findAll();
 
    /**
     * Busca registros de acordo com um determinado filtro.

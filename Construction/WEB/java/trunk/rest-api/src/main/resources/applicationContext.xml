@@ -20,14 +20,14 @@
 	
  	<context:spring-configured />
 
-   <!-- NoSQL Database Configuration -->
-	<import resource="spring-data-mongo.xml" />
+    <!-- NoSQL Database Configuration -->
+    <import resource="spring-data-mongo.xml" />
 
-	<!-- RDBMS Database Configuration -->
-   <import resource="spring-data-rdbms.xml" />
+    <!-- RDBMS Database Configuration -->
+    <import resource="spring-data-rdbms.xml" />
    	
-   <!-- Imports logging configuration -->
-   <import resource="trace-context.xml"/>
+    <!-- Imports logging configuration -->
+    <import resource="trace-context.xml"/>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	

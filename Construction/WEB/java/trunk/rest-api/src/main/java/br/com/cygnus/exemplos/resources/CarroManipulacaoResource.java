@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
+import br.com.cygnus.exemplos.business.CarroManipulationBusiness;
 import br.com.cygnus.exemplos.business.DataManipulation;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 
@@ -58,7 +59,7 @@ public class CarroManipulacaoResource {
    /**
     * @param business {@link DataManipulation}.
     */
-   public final void setBusiness(DataManipulation<CarroDTO> business) {
+   public final void setBusiness(CarroManipulationBusiness business) {
 
       this.business = business;
    }

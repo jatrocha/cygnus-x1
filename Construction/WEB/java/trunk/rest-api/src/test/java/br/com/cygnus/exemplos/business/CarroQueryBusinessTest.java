@@ -63,7 +63,7 @@ public class CarroQueryBusinessTest {
 
       business.setDataStore(dataStore);
 
-      List<CarroDTO> list = business.list();
+      List<CarroDTO> list = business.findAll();
 
       assertNotNull(list);
 
@@ -93,7 +93,7 @@ public class CarroQueryBusinessTest {
 
       business.setDataStore(dataStore);
 
-      List<CarroDTO> list = business.list();
+      List<CarroDTO> list = business.findAll();
 
       assertNotNull(list);
 

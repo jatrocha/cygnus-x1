@@ -4,6 +4,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
-public interface LivroRepository extends MongoRepository<Livro, String>{
+/**
+ * Repositório onde são armazenados os {@link Livro}. Atualmente utilizando banco de dados NoSQL (MongoDB).
+ * 
+ * @see MongoRepository
+ */
+public interface LivroRepository extends MongoRepository<Livro, String> {
 
 }
