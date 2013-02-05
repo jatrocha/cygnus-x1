@@ -14,7 +14,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;
@@ -60,7 +59,7 @@ public class CarroQueryBusinessTest {
 
       });
 
-      CarroQueryBusiness business = new CarroQueryBusiness();
+      CarroBusiness business = new CarroBusiness();
 
       business.setDataStore(dataStore);
 
@@ -90,7 +89,7 @@ public class CarroQueryBusinessTest {
 
       });
 
-      CarroQueryBusiness business = new CarroQueryBusiness();
+      CarroBusiness business = new CarroBusiness();
 
       business.setDataStore(dataStore);
 

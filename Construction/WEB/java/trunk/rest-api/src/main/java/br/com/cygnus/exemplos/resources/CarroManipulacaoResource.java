@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Component;
 
 import br.com.cygnus.exemplos.business.DataManipulation;
-import br.com.cygnus.exemplos.business.impl.CarroManipulationBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 
 /**
@@ -22,8 +22,8 @@ import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 @Path("/carro")
 public class CarroManipulacaoResource {
 
-   @Resource
-   private DataManipulation<CarroDTO> business;
+   @Resource(name = "carroBusiness")
+   private CarroBusiness business;
 
    /**
     * @param dto {@link CarroDTO} a ser criado.
@@ -59,7 +59,7 @@ public class CarroManipulacaoResource {
    /**
     * @param business {@link DataManipulation}.
     */
-   public final void setBusiness(CarroManipulationBusiness business) {
+   public final void setBusiness(CarroBusiness business) {
 
       this.business = business;
    }

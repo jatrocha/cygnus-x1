@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
@@ -54,7 +54,7 @@ public class CarroQueryResourceAdapterTest {
    @Test
    public void testFindAll() {
 
-      this.resource.setBusiness(new CarroQueryBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public List<CarroDTO> findAll() {
@@ -75,7 +75,7 @@ public class CarroQueryResourceAdapterTest {
    @Test
    public void testFindlAllQuandoNenhumCarroCadastrado() {
 
-      this.resource.setBusiness(new CarroQueryBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public List<CarroDTO> findAll() {
@@ -94,7 +94,7 @@ public class CarroQueryResourceAdapterTest {
    @Test
    public void testReadQuandoErroGeral() {
 
-      this.resource.setBusiness(new CarroQueryBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public CarroDTO read(CarroFilterDTO dto) {
@@ -119,7 +119,7 @@ public class CarroQueryResourceAdapterTest {
    @Test
    public void testRead() {
 
-      this.resource.setBusiness(new CarroQueryBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public CarroDTO read(CarroFilterDTO dto) {

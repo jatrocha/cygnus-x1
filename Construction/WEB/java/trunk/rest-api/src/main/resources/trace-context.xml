@@ -16,7 +16,7 @@
 		p:enterMessage="Entering $[targetClassShortName].$[methodName]($[arguments])"
 		p:exitMessage="Leaving $[targetClassShortName].$[methodName](): $[returnValue]"/>
 
-	<aop:config>
+	<aop:config proxy-target-class="true">
 	    
 	  <aop:advisor advice-ref="customizableTraceInterceptor" pointcut="execution(public * br.com.cygnus.exemplos.resources..*(..))"/>
 	  

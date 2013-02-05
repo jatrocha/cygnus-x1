@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.impl.CarroManipulationBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
@@ -47,7 +47,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testCreateQuandoErroGeral() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void create(CarroDTO dto) {
@@ -72,7 +72,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testCreate() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void create(CarroDTO dto) {
@@ -100,7 +100,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testUpdateQuandoErroGeral() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void update(CarroDTO dto) {
@@ -125,7 +125,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testUpdate() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void update(CarroDTO dto) {
@@ -153,7 +153,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testDeleteQuandoErroGeral() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void delete(CarroDTO dto) {
@@ -178,7 +178,7 @@ public class CarroManipulacaoResourceAdapterTest {
    @Test
    public void testDelete() {
 
-      this.resource.setBusiness(new CarroManipulationBusiness() {
+      this.resource.setBusiness(new CarroBusiness() {
 
          @Override
          public void delete(CarroDTO dto) {

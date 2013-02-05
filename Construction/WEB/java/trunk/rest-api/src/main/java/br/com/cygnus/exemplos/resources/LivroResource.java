@@ -2,12 +2,12 @@ package br.com.cygnus.exemplos.resources;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
@@ -20,7 +20,7 @@ import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 @Path("/livro")
 public class LivroResource {
 
-   @Autowired
+   @Resource
    private LivroBusiness livroBusiness;
 
    /**

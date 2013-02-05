@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.stereotype.Component;
 
 import br.com.cygnus.exemplos.business.DataQuery;
-import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 
@@ -21,8 +21,8 @@ import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 @Path("/carro/query")
 public class CarroQueryResource {
 
-   @Resource
-   private DataQuery<CarroFilterDTO, CarroDTO> business;
+   @Resource(name = "carroBusiness")
+   private CarroBusiness business;
 
    /**
     * @return {@link CarroDTO}.
@@ -48,7 +48,7 @@ public class CarroQueryResource {
    /**
     * @param business {@link DataQuery}.
     */
-   public final void setBusiness(CarroQueryBusiness business) {
+   public final void setBusiness(CarroBusiness business) {
 
       this.business = business;
    }
