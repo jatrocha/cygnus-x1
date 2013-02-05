@@ -328,19 +328,27 @@
 			<scope>test</scope>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-jdbc</artifactId> -->
-<!-- 			<version>3.1.0.RELEASE</version> -->
-<!-- 			<type>jar</type> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>3.1.0.RELEASE</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework</groupId> -->
-<!-- 			<artifactId>spring-oxm</artifactId> -->
-<!-- 			<version>3.1.0.RELEASE</version> -->
-<!-- 			<type>jar</type> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-jdbc</artifactId> -->
+		<!-- <version>3.1.0.RELEASE</version> -->
+		<!-- <type>jar</type> -->
+		<!-- </dependency> -->
+
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-oxm</artifactId> -->
+		<!-- <version>3.1.0.RELEASE</version> -->
+		<!-- <type>jar</type> -->
+		<!-- </dependency> -->
 
 
 	</dependencies>

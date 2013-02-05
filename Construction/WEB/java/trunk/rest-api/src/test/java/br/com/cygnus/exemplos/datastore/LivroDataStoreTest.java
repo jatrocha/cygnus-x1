@@ -8,19 +8,18 @@ import java.util.UUID;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.springframework.data.mongodb.core.MongoTemplate;
 
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
 @Ignore
 public class LivroDataStoreTest extends AbstractTestMongoDB {
 
-   private LivroDataStore dataStore = null;
+   private final LivroDataStore dataStore = new LivroDataStore();
 
    @Before
    public void setUp() throws Exception {
 
-      this.dataStore = new LivroDataStore(new MongoTemplate(mongo, DB_NAME));
+      //this.dataStore = new LivroDataStore(new MongoTemplate(mongo, DB_NAME));
    }
 
    @Test(expected = IllegalArgumentException.class)

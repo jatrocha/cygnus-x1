@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
@@ -13,7 +12,7 @@ import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 import br.com.cygnus.framework.template.persistence.DataStore;
 
 /**
- * Manipulação dos {@link LivroDTO} no repositório.
+ * Manipulacao dos {@link LivroDTO} no repositorio.
  * 
  * @see LivroRepository
  */
@@ -23,24 +22,12 @@ public class LivroDataStore implements DataStore<Livro> {
    @Autowired
    private LivroRepository repository;
 
-   private MongoTemplate template;
-
    /**
     * Construtor padrao.
     */
    public LivroDataStore() {
 
       super();
-   }
-
-   /**
-    * @param template {@link MongoTemplate}.
-    */
-   protected LivroDataStore(MongoTemplate template) {
-
-      this();
-
-      this.template = template;
    }
 
    /**
@@ -68,7 +55,15 @@ public class LivroDataStore implements DataStore<Livro> {
          throw new IllegalArgumentException();
       }
 
-      this.template.save(entity);
+      Livro actual = this.repository.findOne(entity.getId());
+
+      actual.setTitulo(entity.getTitulo());
+
+      actual.setAutor(entity.getAutor());
+
+      actual.setGenero(entity.getGenero());
+
+      this.repository.save(actual);
    }
 
    /**
@@ -85,7 +80,15 @@ public class LivroDataStore implements DataStore<Livro> {
    @Override
    public Livro find(Class<Livro> entityClass, Serializable primaryKey) {
 
-      return this.template.findById(primaryKey, entityClass);
+      return this.repository.findOne(primaryKey.toString());
+   }
+
+   /**
+    * @param repository the repository to set
+    */
+   protected final void setRepository(LivroRepository repository) {
+
+      this.repository = repository;
    }
 
    /**
