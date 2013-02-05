@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Mapeamento dos erros para JSon.
+ * Mapeamento dos erros para a resposta do endpoint.
  */
 @XmlRootElement
 public class ErrorDTO implements Serializable {
@@ -15,7 +15,7 @@ public class ErrorDTO implements Serializable {
    private String description;
 
    /**
-    * @param description {@link String} descrição do erro.
+    * @param description {@link String} descricao do erro.
     */
    public ErrorDTO(String description) {
 
@@ -31,7 +31,7 @@ public class ErrorDTO implements Serializable {
    }
 
    /**
-    * @return {@link String} descrição do erro.
+    * @return {@link String} descricao do erro.
     */
    public String getDescription() {
 
@@ -39,7 +39,7 @@ public class ErrorDTO implements Serializable {
    }
 
    /**
-    * @param description {@link String} descrição do erro.
+    * @param description {@link String} descricao do erro.
     */
    public void setDescription(String description) {
 

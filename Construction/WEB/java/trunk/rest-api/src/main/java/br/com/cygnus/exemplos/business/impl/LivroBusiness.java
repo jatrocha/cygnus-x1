@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import br.com.cygnus.exemplos.business.DataManipulation;
 import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroFiltroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.datastore.LivroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.framework.template.business.converter.Converter;
@@ -19,19 +19,19 @@ import br.com.cygnus.framework.template.business.converter.Converter;
  * Business for {@link Livro}.
  */
 @Service
-public class LivroBusiness implements DataQuery<LivroFiltroDTO, LivroDTO>, DataManipulation<LivroDTO> {
+public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataManipulation<LivroDTO> {
 
    @Resource
    private LivroDataStore dataStore;
 
    @Override
-   public LivroDTO read(LivroFiltroDTO dto) {
+   public LivroDTO read(LivroFilterDTO dto) {
 
       return null;
    }
 
    @Override
-   public List<LivroDTO> findBy(LivroFiltroDTO dto) {
+   public List<LivroDTO> findBy(LivroFilterDTO dto) {
       return null;
    }
 

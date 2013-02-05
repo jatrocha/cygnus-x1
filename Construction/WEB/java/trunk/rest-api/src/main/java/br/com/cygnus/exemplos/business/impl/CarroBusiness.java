@@ -23,12 +23,38 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
    @Resource
    private CarroDataStore dataStore;
 
+   /**
+    * Construtor padrao.
+    */
+   public CarroBusiness() {
+
+      super();
+   }
+
+   /**
+    * @param dataStore {@link CarroDataStore} injetado pelos testes unitarios.
+    */
+   protected CarroBusiness(CarroDataStore dataStore) {
+
+      this();
+
+      this.dataStore = dataStore;
+
+   }
+
+   /**
+    * @see br.com.cygnus.exemplos.business.DataQuery#read(br.com.cygnus.framework.template.business.dto.AbstractFilterDTO).
+    */
    @Override
+   @Transactional(propagation = Propagation.NEVER)
    public CarroDTO read(CarroFilterDTO dto) {
       // TODO Auto-generated method stub
       return null;
    }
 
+   /**
+    * @see br.com.cygnus.exemplos.business.DataQuery#findAll().
+    */
    @Override
    @Transactional(propagation = Propagation.NEVER)
    public List<CarroDTO> findAll() {
@@ -38,33 +64,41 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       return new CarroListConverter().convert(list);
    }
 
+   /**
+    * @see br.com.cygnus.exemplos.business.DataQuery#findBy(br.com.cygnus.framework.template.business.dto.AbstractFilterDTO)
+    */
    @Override
+   @Transactional(propagation = Propagation.NEVER)
    public List<CarroDTO> findBy(CarroFilterDTO dto) {
       // TODO Auto-generated method stub
       return null;
    }
 
+   /**
+    * @see br.com.cygnus.exemplos.business.DataManipulation#create(br.com.cygnus.framework.template.business.dto.AbstractDTO).
+    */
    @Override
    public void create(CarroDTO dto) {
       // TODO Auto-generated method stub
 
    }
 
+   /**
+    * @see br.com.cygnus.exemplos.business.DataManipulation#update(br.com.cygnus.framework.template.business.dto.AbstractDTO).
+    */
    @Override
    public void update(CarroDTO dto) {
       // TODO Auto-generated method stub
 
    }
 
+   /**
+    * @see br.com.cygnus.exemplos.business.DataManipulation#delete(br.com.cygnus.framework.template.business.dto.AbstractDTO).
+    */
    @Override
    public void delete(CarroDTO dto) {
       // TODO Auto-generated method stub
 
-   }
-
-   public void setDataStore(CarroDataStore dataStore) {
-
-      this.dataStore = dataStore;
    }
 
 }

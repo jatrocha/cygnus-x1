@@ -23,9 +23,9 @@ public interface DataQuery<F extends AbstractFilterDTO, D extends AbstractDTO> e
    D read(F dto);
 
    /**
-    * Recupera uma lista de registros, partir do filtro informado.
+    * Recupera uma lista de registros contendo todos os registros de um determinado tipo.
     * 
-    * @return lista de registros.
+    * @return {@link java.util.List} contendo a lista de todos os registros encontrados.
     */
    List<D> findAll();
 
@@ -33,7 +33,7 @@ public interface DataQuery<F extends AbstractFilterDTO, D extends AbstractDTO> e
     * Busca registros de acordo com um determinado filtro.
     * 
     * @param dto filtro para busca.
-    * @return lista de registros.
+    * @return {@link java.util.List} contendo a lista de todos os registros encontrados.
     */
    List<D> findBy(F dto);
 }

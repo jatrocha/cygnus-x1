@@ -59,9 +59,7 @@ public class CarroQueryBusinessTest {
 
       });
 
-      CarroBusiness business = new CarroBusiness();
-
-      business.setDataStore(dataStore);
+      CarroBusiness business = new CarroBusiness(dataStore);
 
       List<CarroDTO> list = business.findAll();
 
@@ -89,9 +87,7 @@ public class CarroQueryBusinessTest {
 
       });
 
-      CarroBusiness business = new CarroBusiness();
-
-      business.setDataStore(dataStore);
+      CarroBusiness business = new CarroBusiness(dataStore);
 
       List<CarroDTO> list = business.findAll();
 

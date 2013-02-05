@@ -5,7 +5,7 @@ import java.util.List;
 
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroFiltroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 
 public class LivroBusinessStub extends LivroBusiness {
 
@@ -25,7 +25,7 @@ public class LivroBusinessStub extends LivroBusiness {
    }
 
    @Override
-   public LivroDTO read(LivroFiltroDTO dto) {
+   public LivroDTO read(LivroFilterDTO dto) {
       return null;
    }
 
@@ -44,7 +44,7 @@ public class LivroBusinessStub extends LivroBusiness {
    }
 
    @Override
-   public List<LivroDTO> findBy(LivroFiltroDTO dto) {
+   public List<LivroDTO> findBy(LivroFilterDTO dto) {
       return null;
    }
 
