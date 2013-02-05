@@ -1,4 +1,4 @@
-package br.com.cygnus.exemplos.business;
+package br.com.cygnus.exemplos.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;

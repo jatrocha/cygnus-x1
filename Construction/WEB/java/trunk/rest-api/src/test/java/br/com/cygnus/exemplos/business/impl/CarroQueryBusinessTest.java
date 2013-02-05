@@ -1,4 +1,4 @@
-package br.com.cygnus.exemplos.business;
+package br.com.cygnus.exemplos.business.impl;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -14,6 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;

@@ -12,8 +12,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
-import br.com.cygnus.exemplos.business.CarroQueryBusiness;
 import br.com.cygnus.exemplos.business.DataQuery;
+import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 

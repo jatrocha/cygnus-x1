@@ -1,9 +1,10 @@
-package br.com.cygnus.exemplos.business;
+package br.com.cygnus.exemplos.business.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import br.com.cygnus.exemplos.business.DataManipulation;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;
 

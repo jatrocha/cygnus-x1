@@ -11,8 +11,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
-import br.com.cygnus.exemplos.business.CarroManipulationBusiness;
 import br.com.cygnus.exemplos.business.DataManipulation;
+import br.com.cygnus.exemplos.business.impl.CarroManipulationBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 
 /**

@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.CarroManipulationBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroManipulationBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;

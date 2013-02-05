@@ -1,4 +1,4 @@
-package br.com.cygnus.exemplos.business;
+package br.com.cygnus.exemplos.business.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;

@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.CarroQueryBusiness;
+import br.com.cygnus.exemplos.business.impl.CarroQueryBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;

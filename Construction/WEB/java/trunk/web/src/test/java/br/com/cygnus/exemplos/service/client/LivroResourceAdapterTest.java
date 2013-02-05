@@ -18,8 +18,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.LivroBusiness;
 import br.com.cygnus.exemplos.business.LivroBusinessStub;
+import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.LivroResource;
