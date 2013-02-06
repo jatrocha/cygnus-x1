@@ -15,7 +15,9 @@ import com.sun.jersey.api.client.GenericType;
  */
 public class LivroServiceAdapter extends RESTServiceAdapter {
 
-   private static final String URI_LIVRO_LIST = "/livro/query";
+   private static final String URI_LIVRO = "/livro";
+
+   private static final String URI_LIVRO_LIST = URI_LIVRO + "/query";
 
    /**
     * @return lista contendo todos os {@link LivroDTO} cadastrados.
@@ -24,7 +26,20 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
 
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
-      GenericType<List<LivroDTO>> genericType = new GenericType<List<LivroDTO>>(List.class);
+      GenericType<List<LivroDTO>> genericType = new GenericType<List<LivroDTO>>() {
+      };
+
+      return this.getResponseData(clientResponse, genericType);
+   }
+
+   /**
+    * @return lista contendo todos os {@link LivroDTO} cadastrados.
+    */
+   public LivroDTO findBy(String id) {
+
+      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+
+      GenericType<LivroDTO> genericType = new GenericType<LivroDTO>(LivroDTO.class);
 
       return this.getResponseData(clientResponse, genericType);
    }
