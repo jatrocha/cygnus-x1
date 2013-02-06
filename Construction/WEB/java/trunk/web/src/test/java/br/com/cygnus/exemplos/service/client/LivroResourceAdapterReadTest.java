@@ -5,10 +5,7 @@ import static helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
+import static org.junit.Assert.assertNull;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -21,13 +18,13 @@ import br.com.cygnus.exemplos.JerseyTestBuilder;
 import br.com.cygnus.exemplos.business.LivroBusinessStub;
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.LivroResource;
-import br.com.cygnus.framework.IObjetoGenerico;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterTest {
+public class LivroResourceAdapterReadTest {
 
    private final LivroResource resource = new LivroResource();
 
@@ -63,79 +60,79 @@ public class LivroResourceAdapterTest {
    }
 
    @Test
-   public void testListQuandoErroGeral() {
+   public void testReadQuandoErroGeral() {
 
-      final LivroBusiness livroBusiness = this.context.mock(LivroBusiness.class);
+      final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(livroBusiness).findAll();
+            this.one(livroBusinessMock).read(this.with(any(LivroFilterDTO.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
 
       });
 
-      this.resource.setBusiness(livroBusiness);
+      this.resource.setBusiness(livroBusinessMock);
 
       try {
 
-         this.adapter.findAll();
+         this.adapter.read(LivroFilterDTO.buildWith("1").getId());
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
       } catch (EngineRuntimeException e) {
 
          assertEquals(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS, e.getErrors().iterator().next().getDescription());
       }
+
+      this.context.assertIsSatisfied();
    }
 
    @Test
-   public void testListQuandoNaoHouverLivros() {
+   public void testReadQuandoLivroInexistente() {
 
-      final LivroBusiness livroBusiness = this.context.mock(LivroBusiness.class);
+      final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(livroBusiness).findAll();
+            this.one(livroBusinessMock).read(this.with(any(LivroFilterDTO.class)));
 
-            this.will(returnValue(new ArrayList<LivroDTO>(IObjetoGenerico.NUMERO_INTEIRO_ZERO)));
+            this.will(returnValue(new LivroDTO()));
          }
 
       });
 
-      this.resource.setBusiness(livroBusiness);
+      this.resource.setBusiness(livroBusinessMock);
 
-      List<LivroDTO> resultado = this.adapter.findAll();
+      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1").getId());
 
-      assertNotNull(resultado);
+      assertNotNull(livro);
 
-      assertTrue(resultado.isEmpty());
+      assertNull(livro.getId());
+
+      this.context.assertIsSatisfied();
    }
 
    @Test
-   public void testList() {
+   public void testRead() {
 
       this.resource.setBusiness(new LivroBusinessStub());
 
-      List<LivroDTO> resultado = this.adapter.findAll();
+      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1").getId());
 
-      assertNotNull(resultado);
+      assertNotNull(livro);
 
-      assertEquals(Integer.valueOf(3), Integer.valueOf(resultado.size()));
+      assertEquals("id1", livro.getId());
 
-      // LivroDTO livro = resultado.iterator().next();
-      //
-      // assertEquals("id2", livro.getId());
-      //
-      // assertEquals("titulo2", livro.getTitulo());
-      //
-      // assertEquals("autor2", livro.getAutor());
-      //
-      // assertEquals("autor3", livro.getGenero());
+      assertEquals("titulo1", livro.getTitulo());
+
+      assertEquals("autor1", livro.getAutor());
+
+      assertEquals("genero1", livro.getGenero());
    }
 
 }

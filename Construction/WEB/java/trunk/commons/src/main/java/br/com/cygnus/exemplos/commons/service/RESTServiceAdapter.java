@@ -122,7 +122,7 @@ public abstract class RESTServiceAdapter {
       throw this.createRuntimeException(response);
    }
 
-   private boolean isValidHttpResponse(ClientResponse response) {
+   private Boolean isValidHttpResponse(ClientResponse response) {
 
       return response.getStatus() < HTTP_CODE_400;
    }

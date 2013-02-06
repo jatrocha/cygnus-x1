@@ -6,12 +6,14 @@ import javax.annotation.Resource;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 
 /**
  * Endpoint REST para manipulação de {@link LivroDTO}.
@@ -32,6 +34,16 @@ public class LivroResource {
    public List<LivroDTO> findAll() {
 
       return this.livroBusiness.findAll();
+   }
+
+   /**
+    * @return {@link LivroDTO}.
+    */
+   @GET
+   @Produces({ MediaType.APPLICATION_JSON })
+   public LivroDTO findBy(@QueryParam("id") String id) {
+
+      return this.livroBusiness.read(LivroFilterDTO.buildWith(id));
    }
 
    /**

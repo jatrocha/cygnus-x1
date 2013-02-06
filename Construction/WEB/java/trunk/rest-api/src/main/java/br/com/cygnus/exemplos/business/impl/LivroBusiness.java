@@ -16,7 +16,7 @@ import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.framework.template.business.converter.Converter;
 
 /**
- * Business for {@link Livro}.
+ * Manipulacao de {@link Livro}s.
  */
 @Service
 public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataManipulation<LivroDTO> {

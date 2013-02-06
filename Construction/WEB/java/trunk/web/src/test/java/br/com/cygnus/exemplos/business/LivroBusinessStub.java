@@ -26,7 +26,7 @@ public class LivroBusinessStub extends LivroBusiness {
 
    @Override
    public LivroDTO read(LivroFilterDTO dto) {
-      return null;
+      return this.findAll().iterator().next();
    }
 
    @Override

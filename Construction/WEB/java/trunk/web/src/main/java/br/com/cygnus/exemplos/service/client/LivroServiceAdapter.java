@@ -33,13 +33,16 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @return lista contendo todos os {@link LivroDTO} cadastrados.
+    * @param id {@link String} identificador do {@link LivroDTO}.
+    * @return {@link LivroDTO} recuperado a partir do seu identificador, <code>null</code> caso não seja encontrado.
     */
-   public LivroDTO findBy(String id) {
+   public LivroDTO read(String id) {
 
-      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).queryParam("id", id.toString()).accept(MediaType.APPLICATION_JSON)
+            .get(ClientResponse.class);
 
-      GenericType<LivroDTO> genericType = new GenericType<LivroDTO>(LivroDTO.class);
+      GenericType<LivroDTO> genericType = new GenericType<LivroDTO>() {
+      };
 
       return this.getResponseData(clientResponse, genericType);
    }

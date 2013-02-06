@@ -89,6 +89,8 @@ public class LivroResourceAdapterFindAllTest {
 
          assertEquals(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS, e.getErrors().iterator().next().getDescription());
       }
+
+      this.context.assertIsSatisfied();
    }
 
    @Test
@@ -114,6 +116,8 @@ public class LivroResourceAdapterFindAllTest {
       assertNotNull(resultado);
 
       assertTrue(resultado.isEmpty());
+
+      this.context.assertIsSatisfied();
    }
 
    @Test
@@ -128,8 +132,6 @@ public class LivroResourceAdapterFindAllTest {
       assertEquals(Integer.valueOf(3), Integer.valueOf(resultado.size()));
 
       LivroDTO livro = resultado.get(1);
-
-      // lista.add(LivroDTO.buildWith("id2", "titulo2", "autor2", "genero2"));
 
       assertEquals("id2", livro.getId());
 
