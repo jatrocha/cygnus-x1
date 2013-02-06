@@ -26,7 +26,7 @@ public class LivroResource {
    private LivroBusiness livroBusiness;
 
    /**
-    * @return {@link LivroDTO}.
+    * @return Lista de todos os {@link LivroDTO}s cadastrados.
     */
    @GET
    @Path("/query")
@@ -37,11 +37,11 @@ public class LivroResource {
    }
 
    /**
-    * @return {@link LivroDTO}.
+    * @return {@link LivroDTO} a partir do seu identificador.
     */
    @GET
    @Produces({ MediaType.APPLICATION_JSON })
-   public LivroDTO findBy(@QueryParam("id") String id) {
+   public LivroDTO read(@QueryParam("id") String id) {
 
       return this.livroBusiness.read(LivroFilterDTO.buildWith(id));
    }
