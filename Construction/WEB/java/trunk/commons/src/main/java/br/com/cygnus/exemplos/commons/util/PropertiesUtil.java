@@ -17,7 +17,7 @@ public final class PropertiesUtil {
 
       try {
 
-         this.config = new PropertiesConfiguration("aplication.properties");
+         this.config = new PropertiesConfiguration("application.properties");
 
       } catch (ConfigurationException e) {
 
