@@ -62,6 +62,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
     */
    @Override
    public List<LivroDTO> findBy(LivroFilterDTO dto) {
+
       return null;
    }
 
@@ -71,10 +72,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void create(LivroDTO dto) {
 
-      if (dto == null) {
-
-         throw new IllegalArgumentException();
-      }
+      this.validarDados(dto);
 
       this.repository.save(new LivroDTOToLivroConverter().convert(dto));
    }
@@ -85,10 +83,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void update(LivroDTO dto) {
 
-      if (dto == null || StringUtils.isEmpty(dto.getId())) {
-
-         throw new IllegalArgumentException();
-      }
+      this.validarDadosComIdentificador(dto);
 
       this.repository.save(new LivroDTOToLivroConverter().convert(dto));
    }
@@ -99,10 +94,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void delete(LivroDTO dto) {
 
-      if (dto == null || StringUtils.isEmpty(dto.getId())) {
-
-         throw new IllegalArgumentException();
-      }
+      this.validarDadosComIdentificador(dto);
 
       this.repository.delete(dto.getId());
    }
@@ -114,6 +106,33 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    public List<LivroDTO> findAll() {
 
       return new ListLivroToListLivroDTOConverter().convert(this.repository.findAll());
+   }
+
+   /**
+    * @param dto {@link LivroDTO}.
+    * @throws IllegalArgumentException caso ou o {@link LivroDTO} esteja nulo.
+    */
+   protected final void validarDados(final LivroDTO dto) {
+
+      if (dto == null) {
+
+         throw new IllegalArgumentException();
+      }
+
+   }
+
+   /**
+    * @param dto {@link LivroDTO}.
+    * @throws IllegalArgumentException caso ou o {@link LivroDTO} esteja nulo ou o seu {@link LivroDTO#getId()} invalido.
+    */
+   protected final void validarDadosComIdentificador(final LivroDTO dto) {
+
+      this.validarDados(dto);
+
+      if (StringUtils.isEmpty(dto.getId())) {
+
+         throw new IllegalArgumentException();
+      }
    }
 
    private class LivroDTOToLivroConverter implements Converter<LivroDTO, Livro> {
