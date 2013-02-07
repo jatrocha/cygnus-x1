@@ -85,6 +85,12 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void update(LivroDTO dto) {
 
+      if (dto == null || StringUtils.isEmpty(dto.getId())) {
+
+         throw new IllegalArgumentException();
+      }
+
+      this.repository.save(new LivroDTOToLivroConverter().convert(dto));
    }
 
    /**
