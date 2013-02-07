@@ -79,7 +79,7 @@ public class LivroResourceAdapterReadTest {
 
       try {
 
-         this.adapter.read(LivroFilterDTO.buildWith("1").getId());
+         this.adapter.read(LivroFilterDTO.buildWith("1"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
       } catch (EngineRuntimeException e) {
@@ -108,7 +108,7 @@ public class LivroResourceAdapterReadTest {
 
       this.resource.setBusiness(livroBusinessMock);
 
-      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1").getId());
+      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1"));
 
       assertNotNull(livro);
 
@@ -122,7 +122,7 @@ public class LivroResourceAdapterReadTest {
 
       this.resource.setBusiness(new LivroBusinessStub());
 
-      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1").getId());
+      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1"));
 
       assertNotNull(livro);
 

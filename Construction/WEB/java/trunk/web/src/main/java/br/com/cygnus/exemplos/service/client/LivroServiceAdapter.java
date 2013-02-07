@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.service.RESTServiceAdapter;
 
 import com.sun.jersey.api.client.ClientResponse;
@@ -33,12 +34,12 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @param id {@link String} identificador do {@link LivroDTO}.
+    * @param filter {@link LivroFilterDTO}.
     * @return {@link LivroDTO} recuperado a partir do seu identificador, <code>null</code> caso não seja encontrado.
     */
-   public LivroDTO read(String id) {
+   public LivroDTO read(LivroFilterDTO filter) {
 
-      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).queryParam("id", id.toString()).accept(MediaType.APPLICATION_JSON)
+      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).queryParam("id", filter.getId()).accept(MediaType.APPLICATION_JSON)
             .get(ClientResponse.class);
 
       GenericType<LivroDTO> genericType = new GenericType<LivroDTO>() {
@@ -61,5 +62,15 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
    public void update(LivroDTO dto) {
 
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).type(MediaType.APPLICATION_JSON).put(ClientResponse.class, dto));
+   }
+
+   /**
+    * @param dto {@link LivroDTO} a ser excluido.
+    */
+   public void delete(LivroFilterDTO filter) {
+
+      String path = URI_LIVRO.concat("/".concat(filter.getId()));
+
+      super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(path).delete(ClientResponse.class));
    }
 }

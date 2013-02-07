@@ -31,7 +31,7 @@ public class CarroManipulacaoServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @param dto @param dto {@link CarroDTO} a ser excluido.
+    * @param dto {@link CarroDTO} a ser excluido.
     */
    public void delete(CarroDTO dto) {
 

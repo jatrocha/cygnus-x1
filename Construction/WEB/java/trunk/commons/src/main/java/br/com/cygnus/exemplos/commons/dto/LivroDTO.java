@@ -68,6 +68,15 @@ public final class LivroDTO extends AbstractDTO {
    }
 
    /**
+    * @param id {@link String} identificador.
+    * @return {@link LivroDTO} instanciado.
+    */
+   public static LivroDTO buildWith(String id) {
+
+      return new LivroDTO(id, null, null, null);
+   }
+
+   /**
     * @return {@link String} identificador.
     */
    public String getId() {

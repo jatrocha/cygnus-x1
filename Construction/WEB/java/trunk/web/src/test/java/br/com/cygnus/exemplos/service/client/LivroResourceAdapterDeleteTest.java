@@ -15,20 +15,19 @@ import org.junit.Test;
 import br.com.cygnus.exemplos.JerseyTestBuilder;
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.LivroResource;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterUpdateTest {
+public class LivroResourceAdapterDeleteTest {
 
    private final LivroResource resource = new LivroResource();
 
    private LivroServiceAdapter adapter;
 
    private final JerseyTest server = JerseyTestBuilder.createJerseyTestBuilder().addResource(this.resource).build();
-
-   private LivroDTO actual = LivroDTO.buildWith("1", "titulo", "autor", "genero");
 
    private Mockery context;
 
@@ -58,7 +57,7 @@ public class LivroResourceAdapterUpdateTest {
    }
 
    @Test
-   public void testUpdateQuandoErroGeral() {
+   public void testDeleteQuandoErroGeral() {
 
       final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
@@ -66,7 +65,7 @@ public class LivroResourceAdapterUpdateTest {
 
          {
 
-            this.one(livroBusinessMock).update(this.with(any(LivroDTO.class)));
+            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -77,7 +76,7 @@ public class LivroResourceAdapterUpdateTest {
 
       try {
 
-         this.adapter.update(LivroDTO.buildWith("titulo", "autor", "genero"));
+         this.adapter.delete(LivroFilterDTO.buildWith("1"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -92,27 +91,29 @@ public class LivroResourceAdapterUpdateTest {
    @Test
    public void testUpdate() {
 
-      this.resource.setBusiness(new LivroBusiness() {
+      final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
-         @Override
-         public void update(LivroDTO dto) {
+      this.context.checking(new Expectations() {
 
-            LivroResourceAdapterUpdateTest.this.actual = dto;
+         {
+
+            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
          }
 
       });
 
-      LivroDTO livro = LivroDTO.buildWith("1", "titulo1", "autor2", "genero3");
+      this.resource.setBusiness(livroBusinessMock);
 
-      this.adapter.update(livro);
+      try {
 
-      assertEquals(livro.getId(), this.actual.getId());
+         this.adapter.delete(LivroFilterDTO.buildWith("1"));
 
-      assertEquals(livro.getTitulo(), this.actual.getTitulo());
+      } catch (EngineRuntimeException e) {
 
-      assertEquals(livro.getAutor(), this.actual.getAutor());
+         fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
+      }
 
-      assertEquals(livro.getGenero(), this.actual.getGenero());
+      this.context.assertIsSatisfied();
    }
 
 }
