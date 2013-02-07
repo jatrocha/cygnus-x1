@@ -2,7 +2,6 @@ package br.com.cygnus.exemplos.business.impl;
 
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
-import static br.com.cygnus.framework.IObjetoGenerico.NULL_STRING;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
@@ -13,12 +12,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-public class LivroBusinessUpdateTest {
+public class LivroBusinessUpdateTest extends LivroBusinessTestBase {
 
    private Mockery context;
 
@@ -50,13 +48,13 @@ public class LivroBusinessUpdateTest {
    @Test(expected = IllegalArgumentException.class)
    public void testUpdateQuandoIdInvalidoNull() {
 
-      new LivroBusiness().update(new LivroDTO());
+      new LivroBusiness().update(this.LIVRO_VAZIO);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testUpdateQuandoIdInvalidoVazio() {
 
-      new LivroBusiness().update(LivroDTO.buildWith(NULL_STRING));
+      new LivroBusiness().update(this.LIVRO_COM_ID_VAZIO);
    }
 
    @Test
@@ -77,7 +75,7 @@ public class LivroBusinessUpdateTest {
 
       try {
 
-         new LivroBusiness(repositoryMock).update(LivroDTO.buildWith("1", "titulo", "autor", "genero"));
+         new LivroBusiness(repositoryMock).update(this.LIVRO_PARA_ATUALIZACAO);
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -103,7 +101,7 @@ public class LivroBusinessUpdateTest {
 
       });
 
-      new LivroBusiness(repositoryMock).update(LivroDTO.buildWith("1", "titulo", "autor", "genero"));
+      new LivroBusiness(repositoryMock).update(this.LIVRO_PARA_ATUALIZACAO);
 
       this.context.assertIsSatisfied();
    }

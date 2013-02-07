@@ -13,12 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-public class LivroBusinessReadTest {
+public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
    private Mockery context;
 
@@ -50,13 +48,13 @@ public class LivroBusinessReadTest {
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoIdInvalidoNull() {
 
-      new LivroBusiness().read(new LivroFilterDTO());
+      new LivroBusiness().read(this.LIVRO_FILTER_VAZIO);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoIdInvalidoVazio() {
 
-      new LivroBusiness().read(LivroFilterDTO.buildWith(""));
+      new LivroBusiness().read(this.LIVRO_FILTER_ID_VAZIO);
    }
 
    @Test
@@ -64,13 +62,11 @@ public class LivroBusinessReadTest {
 
       final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
-      final String id = "1";
-
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(repositoryMock).findOne(id);
+            this.one(repositoryMock).findOne(LivroBusinessReadTest.this.ID);
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -81,7 +77,7 @@ public class LivroBusinessReadTest {
 
       try {
 
-         business.read(LivroFilterDTO.buildWith(id));
+         business.read(this.LIVRO_FILTER_COM_ID);
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -98,30 +94,26 @@ public class LivroBusinessReadTest {
 
       final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
-      final String id = "1";
-
-      final Livro livro = new Livro("1", "titulo", "autor", "genero");
-
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(repositoryMock).findOne(id);
+            this.one(repositoryMock).findOne(LivroBusinessReadTest.this.ID);
 
-            this.will(returnValue(livro));
+            this.will(returnValue(LivroBusinessReadTest.this.LIVRO_PARA_LEITURA));
          }
 
       });
 
-      LivroDTO livroDTO = new LivroBusiness(repositoryMock).read(LivroFilterDTO.buildWith(id));
+      LivroDTO livroDTO = new LivroBusiness(repositoryMock).read(this.LIVRO_FILTER_COM_ID);
 
-      assertEquals(livro.getId(), livroDTO.getId());
+      assertEquals(this.LIVRO_PARA_LEITURA.getId(), livroDTO.getId());
 
-      assertEquals(livro.getTitulo(), livroDTO.getTitulo());
+      assertEquals(this.LIVRO_PARA_LEITURA.getTitulo(), livroDTO.getTitulo());
 
-      assertEquals(livro.getAutor(), livroDTO.getAutor());
+      assertEquals(this.LIVRO_PARA_LEITURA.getAutor(), livroDTO.getAutor());
 
-      assertEquals(livro.getGenero(), livroDTO.getGenero());
+      assertEquals(this.LIVRO_PARA_LEITURA.getGenero(), livroDTO.getGenero());
 
       this.context.assertIsSatisfied();
    }

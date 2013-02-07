@@ -12,12 +12,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-public class LivroBusinessCreateTest {
+public class LivroBusinessCreateTest extends LivroBusinessTestBase {
 
    private Mockery context;
 
@@ -66,7 +65,7 @@ public class LivroBusinessCreateTest {
 
       try {
 
-         business.create(LivroDTO.buildWith("titulo", "autor", "genero"));
+         business.create(this.LIVRO_PARA_INCLUSAO);
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -92,7 +91,7 @@ public class LivroBusinessCreateTest {
 
       });
 
-      new LivroBusiness(repositoryMock).create(LivroDTO.buildWith("titulo", "autor", "genero"));
+      new LivroBusiness(repositoryMock).create(this.LIVRO_PARA_INCLUSAO);
 
       this.context.assertIsSatisfied();
    }
