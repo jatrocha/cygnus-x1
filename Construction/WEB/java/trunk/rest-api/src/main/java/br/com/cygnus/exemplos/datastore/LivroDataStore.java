@@ -17,6 +17,7 @@ import br.com.cygnus.framework.template.persistence.DataStore;
  * @see LivroRepository
  */
 @Service
+@Deprecated
 public class LivroDataStore implements DataStore<Livro> {
 
    @Autowired

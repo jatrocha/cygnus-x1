@@ -15,8 +15,8 @@ import org.junit.Test;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.datastore.LivroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Livro;
+import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
 public class LivroBusinessReadTest {
 
@@ -62,7 +62,7 @@ public class LivroBusinessReadTest {
    @Test
    public void testReadQuandoErroGeral() {
 
-      final LivroDataStore livroDataStoreMock = this.context.mock(LivroDataStore.class);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
       final String id = "1";
 
@@ -70,14 +70,14 @@ public class LivroBusinessReadTest {
 
          {
 
-            this.one(livroDataStoreMock).find(Livro.class, id);
+            this.one(repositoryMock).findOne(id);
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
 
       });
 
-      LivroBusiness business = new LivroBusiness(livroDataStoreMock);
+      LivroBusiness business = new LivroBusiness(repositoryMock);
 
       try {
 
@@ -96,7 +96,7 @@ public class LivroBusinessReadTest {
    @Test
    public void testRead() {
 
-      final LivroDataStore livroDataStoreMock = this.context.mock(LivroDataStore.class);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
       final String id = "1";
 
@@ -106,14 +106,14 @@ public class LivroBusinessReadTest {
 
          {
 
-            this.one(livroDataStoreMock).find(Livro.class, id);
+            this.one(repositoryMock).findOne(id);
 
             this.will(returnValue(livro));
          }
 
       });
 
-      LivroDTO livroDTO = new LivroBusiness(livroDataStoreMock).read(LivroFilterDTO.buildWith(id));
+      LivroDTO livroDTO = new LivroBusiness(repositoryMock).read(LivroFilterDTO.buildWith(id));
 
       assertEquals(livro.getId(), livroDTO.getId());
 

@@ -12,18 +12,18 @@ import br.com.cygnus.exemplos.business.DataManipulation;
 import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
-import br.com.cygnus.exemplos.datastore.LivroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Livro;
+import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 import br.com.cygnus.framework.template.business.converter.Converter;
 
 /**
- * Manipulacao de {@link Livro}s.
+ * Manipulacao de {@link LivroDTO}s.
  */
 @Service
 public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataManipulation<LivroDTO> {
 
    @Resource
-   private LivroDataStore dataStore;
+   private LivroRepository repository;
 
    /**
     * Construtor padrao.
@@ -34,13 +34,13 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    }
 
    /**
-    * @param dataStore {@link LivroDataStore}.
+    * @param repository {@link LivroRepository}.
     */
-   protected LivroBusiness(final LivroDataStore dataStore) {
+   protected LivroBusiness(final LivroRepository repository) {
 
       this();
 
-      this.dataStore = dataStore;
+      this.repository = repository;
    }
 
    /**
@@ -54,7 +54,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
          throw new IllegalArgumentException();
       }
 
-      return new LivroToLivroDTOConverter().convert(this.dataStore.find(Livro.class, dto.getId()));
+      return new LivroToLivroDTOConverter().convert(this.repository.findOne(dto.getId()));
    }
 
    /**
@@ -76,7 +76,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
          throw new IllegalArgumentException();
       }
 
-      this.dataStore.save(new LivroDTOToLivroConverter().convert(dto));
+      this.repository.save(new LivroDTOToLivroConverter().convert(dto));
    }
 
    /**
@@ -101,7 +101,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public List<LivroDTO> findAll() {
 
-      return new ListLivroToListLivroDTOConverter().convert(this.dataStore.findAll());
+      return new ListLivroToListLivroDTOConverter().convert(this.repository.findAll());
    }
 
    private class LivroDTOToLivroConverter implements Converter<LivroDTO, Livro> {

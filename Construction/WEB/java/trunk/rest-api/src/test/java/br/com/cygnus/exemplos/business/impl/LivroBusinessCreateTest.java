@@ -14,8 +14,8 @@ import org.junit.Test;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.datastore.LivroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Livro;
+import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
 public class LivroBusinessCreateTest {
 
@@ -49,20 +49,20 @@ public class LivroBusinessCreateTest {
    @Test
    public void testCreateQuandoErroGeral() {
 
-      final LivroDataStore livroDataStoreMock = this.context.mock(LivroDataStore.class);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(livroDataStoreMock).save(this.with(any(Livro.class)));
+            this.one(repositoryMock).save(this.with(any(Livro.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
 
       });
 
-      LivroBusiness business = new LivroBusiness(livroDataStoreMock);
+      LivroBusiness business = new LivroBusiness(repositoryMock);
 
       try {
 
@@ -81,18 +81,18 @@ public class LivroBusinessCreateTest {
    @Test
    public void testCreate() {
 
-      final LivroDataStore livroDataStoreMock = this.context.mock(LivroDataStore.class);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(livroDataStoreMock).save(this.with(any(Livro.class)));
+            this.one(repositoryMock).save(this.with(any(Livro.class)));
          }
 
       });
 
-      new LivroBusiness(livroDataStoreMock).create(LivroDTO.buildWith("titulo", "autor", "genero"));
+      new LivroBusiness(repositoryMock).create(LivroDTO.buildWith("titulo", "autor", "genero"));
 
       this.context.assertIsSatisfied();
    }
