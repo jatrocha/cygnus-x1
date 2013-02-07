@@ -99,6 +99,12 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void delete(LivroDTO dto) {
 
+      if (dto == null || StringUtils.isEmpty(dto.getId())) {
+
+         throw new IllegalArgumentException();
+      }
+
+      this.repository.delete(dto.getId());
    }
 
    /**

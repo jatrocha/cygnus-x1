@@ -15,10 +15,9 @@ import org.junit.Test;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-public class LivroBusinessUpdateTest {
+public class LivroBusinessDeleteTest {
 
    private Mockery context;
 
@@ -42,33 +41,35 @@ public class LivroBusinessUpdateTest {
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testUpdateQuandoParametroInvalidoNull() {
+   public void testDeleteQuandoParametroInvalidoNull() {
 
-      new LivroBusiness().update(null);
+      new LivroBusiness().delete(null);
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testUpdateQuandoIdInvalidoNull() {
+   public void testDeleteQuandoIdInvalidoNull() {
 
-      new LivroBusiness().update(new LivroDTO());
+      new LivroBusiness().delete(new LivroDTO());
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testUpdateQuandoIdInvalidoVazio() {
+   public void testDeleteQuandoIdInvalidoVazio() {
 
-      new LivroBusiness().update(LivroDTO.buildWith(NULL_STRING));
+      new LivroBusiness().delete(LivroDTO.buildWith(NULL_STRING));
    }
 
    @Test
-   public void testUpdateQuandoErroGeral() {
+   public void testDeleteQuandoErroGeral() {
 
       final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
+
+      final String id = "1";
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(repositoryMock).save(this.with(any(Livro.class)));
+            this.one(repositoryMock).delete(id);
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -77,7 +78,7 @@ public class LivroBusinessUpdateTest {
 
       try {
 
-         new LivroBusiness(repositoryMock).update(LivroDTO.buildWith("1", "titulo", "autor", "genero"));
+         new LivroBusiness(repositoryMock).delete(LivroDTO.buildWith(id));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -90,20 +91,22 @@ public class LivroBusinessUpdateTest {
    }
 
    @Test
-   public void testUpdate() {
+   public void testDelete() {
 
       final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
+
+      final String id = "1";
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(repositoryMock).save(this.with(any(Livro.class)));
+            this.one(repositoryMock).delete(id);
          }
 
       });
 
-      new LivroBusiness(repositoryMock).update(LivroDTO.buildWith("1", "titulo", "autor", "genero"));
+      new LivroBusiness(repositoryMock).delete(LivroDTO.buildWith(id));
 
       this.context.assertIsSatisfied();
    }
