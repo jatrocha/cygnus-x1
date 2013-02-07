@@ -71,6 +71,12 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    @Override
    public void create(LivroDTO dto) {
 
+      if (dto == null) {
+
+         throw new IllegalArgumentException();
+      }
+
+      this.dataStore.save(new LivroDTOToLivroConverter().convert(dto));
    }
 
    /**
@@ -96,6 +102,19 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
    public List<LivroDTO> findAll() {
 
       return new ListLivroToListLivroDTOConverter().convert(this.dataStore.findAll());
+   }
+
+   private class LivroDTOToLivroConverter implements Converter<LivroDTO, Livro> {
+
+      /**
+       * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
+       */
+      @Override
+      public Livro convert(LivroDTO source) {
+
+         return new Livro(source.getId(), source.getTitulo(), source.getAutor(), source.getGenero());
+      }
+
    }
 
    private class LivroToLivroDTOConverter implements Converter<Livro, LivroDTO> {
