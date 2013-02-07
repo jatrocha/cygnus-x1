@@ -84,6 +84,7 @@ public class LivroResourceAdapterReadTest {
          this.adapter.read(LivroFilterDTO.buildWith("1"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
+
       } catch (EngineRuntimeException e) {
 
          assertEquals(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS, e.getErrors().iterator().next().getDescription());

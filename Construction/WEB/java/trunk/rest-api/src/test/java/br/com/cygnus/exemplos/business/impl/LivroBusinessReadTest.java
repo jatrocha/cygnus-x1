@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.datastore.LivroDataStore;
@@ -88,6 +89,39 @@ public class LivroBusinessReadTest {
 
          assertEquals(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS, e.getErrors().iterator().next().getDescription());
       }
+
+      this.context.assertIsSatisfied();
+   }
+
+   @Test
+   public void testRead() {
+
+      final LivroDataStore livroDataStoreMock = this.context.mock(LivroDataStore.class);
+
+      final String id = "1";
+
+      final Livro livro = new Livro("1", "titulo", "autor", "genero");
+
+      this.context.checking(new Expectations() {
+
+         {
+
+            this.one(livroDataStoreMock).find(Livro.class, id);
+
+            this.will(returnValue(livro));
+         }
+
+      });
+
+      LivroDTO livroDTO = new LivroBusiness(livroDataStoreMock).read(LivroFilterDTO.buildWith(id));
+
+      assertEquals(livro.getId(), livroDTO.getId());
+
+      assertEquals(livro.getTitulo(), livroDTO.getTitulo());
+
+      assertEquals(livro.getAutor(), livroDTO.getAutor());
+
+      assertEquals(livro.getGenero(), livroDTO.getGenero());
 
       this.context.assertIsSatisfied();
    }
