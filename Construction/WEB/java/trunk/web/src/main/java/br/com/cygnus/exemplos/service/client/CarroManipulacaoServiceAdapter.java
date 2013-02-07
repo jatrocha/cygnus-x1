@@ -23,7 +23,7 @@ public class CarroManipulacaoServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @param dto @param dto {@link CarroDTO} a ser atualizado.
+    * @param dto {@link CarroDTO} a ser atualizado.
     */
    public void update(CarroDTO dto) {
 

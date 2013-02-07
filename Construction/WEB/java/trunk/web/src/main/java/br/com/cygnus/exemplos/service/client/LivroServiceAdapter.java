@@ -55,4 +55,11 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, dto));
    }
 
+   /**
+    * @param dto {@link LivroDTO} a ser atualizado.
+    */
+   public void update(LivroDTO dto) {
+
+      super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).type(MediaType.APPLICATION_JSON).put(ClientResponse.class, dto));
+   }
 }

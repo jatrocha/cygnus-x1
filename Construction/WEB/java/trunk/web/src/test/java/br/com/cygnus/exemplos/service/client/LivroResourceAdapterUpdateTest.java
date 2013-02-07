@@ -20,7 +20,7 @@ import br.com.cygnus.exemplos.resources.LivroResource;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterCreateTest {
+public class LivroResourceAdapterUpdateTest {
 
    private final LivroResource resource = new LivroResource();
 
@@ -58,7 +58,7 @@ public class LivroResourceAdapterCreateTest {
    }
 
    @Test
-   public void testCreateQuandoErroGeral() {
+   public void testUpdateQuandoErroGeral() {
 
       final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
@@ -66,7 +66,7 @@ public class LivroResourceAdapterCreateTest {
 
          {
 
-            this.one(livroBusinessMock).create(this.with(any(LivroDTO.class)));
+            this.one(livroBusinessMock).update(this.with(any(LivroDTO.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -77,7 +77,7 @@ public class LivroResourceAdapterCreateTest {
 
       try {
 
-         this.adapter.create(LivroDTO.buildWith("titulo", "autor", "genero"));
+         this.adapter.update(LivroDTO.buildWith("titulo", "autor", "genero"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -90,21 +90,21 @@ public class LivroResourceAdapterCreateTest {
    }
 
    @Test
-   public void testCreate() {
+   public void testUpdate() {
 
       this.resource.setBusiness(new LivroBusiness() {
 
          @Override
-         public void create(LivroDTO dto) {
+         public void update(LivroDTO dto) {
 
-            LivroResourceAdapterCreateTest.this.actual = dto;
+            LivroResourceAdapterUpdateTest.this.actual = dto;
          }
 
       });
 
-      LivroDTO livro = LivroDTO.buildWith("1", "titulo", "autor", "genero");
+      LivroDTO livro = LivroDTO.buildWith("1", "titulo1", "autor", "genero");
 
-      this.adapter.create(livro);
+      this.adapter.update(livro);
 
       assertEquals(livro.getId(), this.actual.getId());
 

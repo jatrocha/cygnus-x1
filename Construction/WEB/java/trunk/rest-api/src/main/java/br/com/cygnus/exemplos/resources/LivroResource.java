@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -56,6 +57,16 @@ public class LivroResource {
    public void create(LivroDTO dto) {
 
       this.livroBusiness.create(dto);
+   }
+
+   /**
+    * @param dto {@link LivroDTO} a ser atualizado.
+    */
+   @PUT
+   @Consumes({ MediaType.APPLICATION_JSON })
+   public void update(LivroDTO dto) {
+
+      this.livroBusiness.update(dto);
    }
 
    /**
