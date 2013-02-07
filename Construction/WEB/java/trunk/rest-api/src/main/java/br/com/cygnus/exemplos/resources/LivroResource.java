@@ -76,7 +76,6 @@ public class LivroResource {
     */
    @DELETE
    @Path("{id}")
-   @Consumes({ MediaType.APPLICATION_JSON })
    public void delete(@PathParam("id") String id) {
 
       this.livroBusiness.delete(LivroDTO.buildWith(id));
