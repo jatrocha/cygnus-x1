@@ -10,21 +10,6 @@ import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 public class LivroBusinessStub extends LivroBusiness {
 
    @Override
-   public void create(LivroDTO dto) {
-
-   }
-
-   @Override
-   public void update(LivroDTO dto) {
-
-   }
-
-   @Override
-   public void delete(LivroDTO dto) {
-
-   }
-
-   @Override
    public LivroDTO read(LivroFilterDTO dto) {
 
       return this.findAll().iterator().next();
@@ -46,6 +31,7 @@ public class LivroBusinessStub extends LivroBusiness {
 
    @Override
    public List<LivroDTO> findBy(LivroFilterDTO dto) {
+
       return null;
    }
 

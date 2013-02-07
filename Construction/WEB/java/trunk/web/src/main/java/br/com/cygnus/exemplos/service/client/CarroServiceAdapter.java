@@ -1,0 +1,36 @@
+package br.com.cygnus.exemplos.service.client;
+
+import java.util.List;
+
+import javax.ws.rs.core.MediaType;
+
+import br.com.cygnus.exemplos.commons.dto.CarroDTO;
+import br.com.cygnus.exemplos.commons.dto.LivroDTO;
+import br.com.cygnus.exemplos.commons.service.RESTServiceAdapter;
+
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.GenericType;
+
+/**
+ * Adaptador de servico <code>REST</code> para consulta de {@link LivroDTO}.
+ */
+public class CarroServiceAdapter extends RESTServiceAdapter {
+
+   private static final String URI_CARRO = "/carro";
+
+   private static final String URI_CARRO_LIST = URI_CARRO + "/query";
+
+   /**
+    * @return lista contendo todos os {@link CarroDTO} cadastrados.
+    */
+   public List<CarroDTO> findAll() {
+
+      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_CARRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+
+      GenericType<List<CarroDTO>> genericType = new GenericType<List<CarroDTO>>() {
+      };
+
+      return this.getResponseData(clientResponse, genericType);
+   }
+
+}
