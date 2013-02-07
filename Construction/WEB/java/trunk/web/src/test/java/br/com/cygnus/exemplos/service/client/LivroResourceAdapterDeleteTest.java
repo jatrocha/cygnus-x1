@@ -1,8 +1,8 @@
 package br.com.cygnus.exemplos.service.client;
 
-import static helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
-import static helper.MensagemHelper.EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA;
-import static helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
+import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
+import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA;
+import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 

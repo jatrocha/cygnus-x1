@@ -1,4 +1,4 @@
-package helper;
+package br.com.cygnus.exemplos.commons.helper;
 
 /**
  * Mensagens e outras coisas comuns que sao utilizadas nos testes unitarios.
