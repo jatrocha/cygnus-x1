@@ -29,7 +29,7 @@ import br.com.cygnus.framework.IObjetoGenerico;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class CarroResourceAdapterFindAllTest {
+public class CarroServiceAdapterFindAllTest {
 
    private final CarroResource resource = new CarroResource();
 

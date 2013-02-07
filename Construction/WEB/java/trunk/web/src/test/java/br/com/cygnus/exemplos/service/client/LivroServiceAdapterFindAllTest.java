@@ -4,6 +4,11 @@ import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEV
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -13,22 +18,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
+import br.com.cygnus.exemplos.business.LivroBusinessStub;
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.LivroResource;
+import br.com.cygnus.framework.IObjetoGenerico;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterCreateTest {
+public class LivroServiceAdapterFindAllTest {
 
    private final LivroResource resource = new LivroResource();
 
    private LivroServiceAdapter adapter;
 
    private final JerseyTest server = JerseyTestBuilder.createJerseyTestBuilder().addResource(this.resource).build();
-
-   private LivroDTO actual = LivroDTO.buildWith("1", "titulo", "autor", "genero");
 
    private Mockery context;
 
@@ -58,29 +63,28 @@ public class LivroResourceAdapterCreateTest {
    }
 
    @Test
-   public void testCreateQuandoErroGeral() {
+   public void testListQuandoErroGeral() {
 
-      final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
+      final LivroBusiness livroBusiness = this.context.mock(LivroBusiness.class);
 
       this.context.checking(new Expectations() {
 
          {
 
-            this.one(livroBusinessMock).create(this.with(any(LivroDTO.class)));
+            this.one(livroBusiness).findAll();
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
 
       });
 
-      this.resource.setBusiness(livroBusinessMock);
+      this.resource.setBusiness(livroBusiness);
 
       try {
 
-         this.adapter.create(LivroDTO.buildWith("titulo", "autor", "genero"));
+         this.adapter.findAll();
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
-
       } catch (EngineRuntimeException e) {
 
          assertEquals(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS, e.getErrors().iterator().next().getDescription());
@@ -90,29 +94,52 @@ public class LivroResourceAdapterCreateTest {
    }
 
    @Test
-   public void testCreate() {
+   public void testListQuandoNaoHouverLivros() {
 
-      this.resource.setBusiness(new LivroBusiness() {
+      final LivroBusiness livroBusiness = this.context.mock(LivroBusiness.class);
 
-         @Override
-         public void create(LivroDTO dto) {
+      this.context.checking(new Expectations() {
 
-            LivroResourceAdapterCreateTest.this.actual = dto;
+         {
+
+            this.one(livroBusiness).findAll();
+
+            this.will(returnValue(new ArrayList<LivroDTO>(IObjetoGenerico.NUMERO_INTEIRO_ZERO)));
          }
 
       });
 
-      LivroDTO livro = LivroDTO.buildWith("1", "titulo", "autor", "genero");
+      this.resource.setBusiness(livroBusiness);
 
-      this.adapter.create(livro);
+      List<LivroDTO> resultado = this.adapter.findAll();
 
-      assertEquals(livro.getId(), this.actual.getId());
+      assertNotNull(resultado);
 
-      assertEquals(livro.getTitulo(), this.actual.getTitulo());
+      assertTrue(resultado.isEmpty());
 
-      assertEquals(livro.getAutor(), this.actual.getAutor());
+      this.context.assertIsSatisfied();
+   }
 
-      assertEquals(livro.getGenero(), this.actual.getGenero());
+   @Test
+   public void testList() {
+
+      this.resource.setBusiness(new LivroBusinessStub());
+
+      List<LivroDTO> resultado = this.adapter.findAll();
+
+      assertNotNull(resultado);
+
+      assertEquals(Integer.valueOf(3), Integer.valueOf(resultado.size()));
+
+      LivroDTO livro = resultado.get(1);
+
+      assertEquals("id2", livro.getId());
+
+      assertEquals("titulo2", livro.getTitulo());
+
+      assertEquals("autor2", livro.getAutor());
+
+      assertEquals("genero2", livro.getGenero());
    }
 
 }

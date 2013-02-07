@@ -1,11 +1,10 @@
 package br.com.cygnus.exemplos.service.client;
 
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
+import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA;
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -15,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.JerseyTestBuilder;
-import br.com.cygnus.exemplos.business.LivroBusinessStub;
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
@@ -24,7 +22,7 @@ import br.com.cygnus.exemplos.resources.LivroResource;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterReadTest {
+public class LivroServiceAdapterDeleteTest {
 
    private final LivroResource resource = new LivroResource();
 
@@ -57,12 +55,10 @@ public class LivroResourceAdapterReadTest {
    public void tearDown() throws Exception {
 
       this.server.tearDown();
-
-      this.context = null;
    }
 
    @Test
-   public void testReadQuandoErroGeral() {
+   public void testDeleteQuandoErroGeral() {
 
       final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
@@ -70,7 +66,7 @@ public class LivroResourceAdapterReadTest {
 
          {
 
-            this.one(livroBusinessMock).read(this.with(any(LivroFilterDTO.class)));
+            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -81,7 +77,7 @@ public class LivroResourceAdapterReadTest {
 
       try {
 
-         this.adapter.read(LivroFilterDTO.buildWith("1"));
+         this.adapter.delete(LivroFilterDTO.buildWith("1"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -94,7 +90,7 @@ public class LivroResourceAdapterReadTest {
    }
 
    @Test
-   public void testReadQuandoLivroInexistente() {
+   public void testUpdate() {
 
       final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
@@ -102,40 +98,23 @@ public class LivroResourceAdapterReadTest {
 
          {
 
-            this.one(livroBusinessMock).read(this.with(any(LivroFilterDTO.class)));
-
-            this.will(returnValue(new LivroDTO()));
+            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
          }
 
       });
 
       this.resource.setBusiness(livroBusinessMock);
 
-      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1"));
+      try {
 
-      assertNotNull(livro);
+         this.adapter.delete(LivroFilterDTO.buildWith("1"));
 
-      assertNull(livro.getId());
+      } catch (EngineRuntimeException e) {
+
+         fail(EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA);
+      }
 
       this.context.assertIsSatisfied();
-   }
-
-   @Test
-   public void testRead() {
-
-      this.resource.setBusiness(new LivroBusinessStub());
-
-      LivroDTO livro = this.adapter.read(LivroFilterDTO.buildWith("1"));
-
-      assertNotNull(livro);
-
-      assertEquals("id1", livro.getId());
-
-      assertEquals("titulo1", livro.getTitulo());
-
-      assertEquals("autor1", livro.getAutor());
-
-      assertEquals("genero1", livro.getGenero());
    }
 
 }

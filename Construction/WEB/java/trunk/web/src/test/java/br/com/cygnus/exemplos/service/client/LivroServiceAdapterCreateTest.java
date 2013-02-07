@@ -1,7 +1,6 @@
 package br.com.cygnus.exemplos.service.client;
 
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
-import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA;
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
@@ -16,19 +15,20 @@ import org.junit.Test;
 import br.com.cygnus.exemplos.JerseyTestBuilder;
 import br.com.cygnus.exemplos.business.impl.LivroBusiness;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.LivroResource;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterDeleteTest {
+public class LivroServiceAdapterCreateTest {
 
    private final LivroResource resource = new LivroResource();
 
    private LivroServiceAdapter adapter;
 
    private final JerseyTest server = JerseyTestBuilder.createJerseyTestBuilder().addResource(this.resource).build();
+
+   private LivroDTO actual = LivroDTO.buildWith("1", "titulo", "autor", "genero");
 
    private Mockery context;
 
@@ -58,7 +58,7 @@ public class LivroResourceAdapterDeleteTest {
    }
 
    @Test
-   public void testDeleteQuandoErroGeral() {
+   public void testCreateQuandoErroGeral() {
 
       final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
 
@@ -66,7 +66,7 @@ public class LivroResourceAdapterDeleteTest {
 
          {
 
-            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
+            this.one(livroBusinessMock).create(this.with(any(LivroDTO.class)));
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
@@ -77,7 +77,7 @@ public class LivroResourceAdapterDeleteTest {
 
       try {
 
-         this.adapter.delete(LivroFilterDTO.buildWith("1"));
+         this.adapter.create(LivroDTO.buildWith("titulo", "autor", "genero"));
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -90,31 +90,29 @@ public class LivroResourceAdapterDeleteTest {
    }
 
    @Test
-   public void testUpdate() {
+   public void testCreate() {
 
-      final LivroBusiness livroBusinessMock = this.context.mock(LivroBusiness.class);
+      this.resource.setBusiness(new LivroBusiness() {
 
-      this.context.checking(new Expectations() {
+         @Override
+         public void create(LivroDTO dto) {
 
-         {
-
-            this.one(livroBusinessMock).delete(this.with(any(LivroDTO.class)));
+            LivroServiceAdapterCreateTest.this.actual = dto;
          }
 
       });
 
-      this.resource.setBusiness(livroBusinessMock);
+      LivroDTO livro = LivroDTO.buildWith("1", "titulo", "autor", "genero");
 
-      try {
+      this.adapter.create(livro);
 
-         this.adapter.delete(LivroFilterDTO.buildWith("1"));
+      assertEquals(livro.getId(), this.actual.getId());
 
-      } catch (EngineRuntimeException e) {
+      assertEquals(livro.getTitulo(), this.actual.getTitulo());
 
-         fail(EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA);
-      }
+      assertEquals(livro.getAutor(), this.actual.getAutor());
 
-      this.context.assertIsSatisfied();
+      assertEquals(livro.getGenero(), this.actual.getGenero());
    }
 
 }

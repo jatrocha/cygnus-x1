@@ -20,7 +20,7 @@ import br.com.cygnus.exemplos.resources.LivroResource;
 
 import com.sun.jersey.test.framework.JerseyTest;
 
-public class LivroResourceAdapterUpdateTest {
+public class LivroServiceAdapterUpdateTest {
 
    private final LivroResource resource = new LivroResource();
 
@@ -97,7 +97,7 @@ public class LivroResourceAdapterUpdateTest {
          @Override
          public void update(LivroDTO dto) {
 
-            LivroResourceAdapterUpdateTest.this.actual = dto;
+            LivroServiceAdapterUpdateTest.this.actual = dto;
          }
 
       });
