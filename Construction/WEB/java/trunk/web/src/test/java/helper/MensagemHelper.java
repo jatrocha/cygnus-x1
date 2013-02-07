@@ -6,7 +6,9 @@ package helper;
 public interface MensagemHelper {
 
    String EXCEPTION_DEVERIA_TER_SIDO_LANCADA = "Exception deveria ter sido lancada.";
-   
+
+   String EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA = "Exception não deveria ter sido lancada.";
+
    String MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS = "Unforeseen consequence!";
 
 }

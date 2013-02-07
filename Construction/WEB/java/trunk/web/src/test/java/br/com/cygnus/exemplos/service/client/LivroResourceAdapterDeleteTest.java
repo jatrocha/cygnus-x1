@@ -1,6 +1,7 @@
 package br.com.cygnus.exemplos.service.client;
 
 import static helper.MensagemHelper.EXCEPTION_DEVERIA_TER_SIDO_LANCADA;
+import static helper.MensagemHelper.EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA;
 import static helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
@@ -110,7 +111,7 @@ public class LivroResourceAdapterDeleteTest {
 
       } catch (EngineRuntimeException e) {
 
-         fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
+         fail(EXCEPTION_NAO_DEVERIA_TER_SIDO_LANCADA);
       }
 
       this.context.assertIsSatisfied();
