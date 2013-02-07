@@ -49,10 +49,22 @@ public final class LivroDTO extends AbstractDTO {
     * @param titulo {@link String} titulo do livro.
     * @param autor {@link String} nome do autor.
     * @param genero {@link String} genero do livro.
+    * @return {@link LivroDTO} instanciado.
     */
    public static LivroDTO buildWith(final String id, final String titulo, final String autor, final String genero) {
 
       return new LivroDTO(id, titulo, autor, genero);
+   }
+
+   /**
+    * @param titulo {@link String} titulo do livro.
+    * @param autor {@link String} nome do autor.
+    * @param genero {@link String} genero do livro.
+    * @return {@link LivroDTO} instanciado.
+    */
+   public static LivroDTO buildWith(final String titulo, final String autor, final String genero) {
+
+      return new LivroDTO(null, titulo, autor, genero);
    }
 
    /**
