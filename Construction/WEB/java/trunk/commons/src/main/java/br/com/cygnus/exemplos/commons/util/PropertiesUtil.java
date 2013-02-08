@@ -48,7 +48,7 @@ public final class PropertiesUtil {
    }
 
    /**
-    * @param string {@link origem}
+    * @param string {@link String}.
     * @param parameters {@link Object} varargs para substituicao dos <code>coringas</code> por valores.
     * @return {@link String} contendo o valor desejado.
     */

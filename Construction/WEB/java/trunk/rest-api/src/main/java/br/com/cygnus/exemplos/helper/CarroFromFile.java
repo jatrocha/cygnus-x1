@@ -46,7 +46,7 @@ public class CarroFromFile implements LoadFromFile<Carro> {
    }
 
    /**
-    * @see br.com.cygnus.examples.helper.LoadFromFile#withDelimiter(java.lang.String).
+    * @see br.com.cygnus.exemplos.helper.LoadFromFile#withDelimiter(java.lang.String)
     */
    @Override
    public LoadFromFile<Carro> withDelimiter(String delimiter) {
@@ -62,7 +62,7 @@ public class CarroFromFile implements LoadFromFile<Carro> {
    }
 
    /**
-    * @see br.com.cygnus.examples.helper.LoadFromFile#load().
+    * @see br.com.cygnus.exemplos.helper.LoadFromFile#load()
     */
    @Override
    public List<Carro> load() {
@@ -86,7 +86,7 @@ public class CarroFromFile implements LoadFromFile<Carro> {
    }
 
    /**
-    * @see br.com.cygnus.examples.helper.LoadFromFile#parseLine(java.lang.String).
+    * @see br.com.cygnus.examples.helper.LoadFromFile#parseLine(java.lang.String)
     */
    @Override
    public Carro parseLine(String line) {

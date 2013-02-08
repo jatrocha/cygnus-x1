@@ -72,7 +72,7 @@ public class LivroResource {
    }
 
    /**
-    * @param dto {@link LivroDTO} a ser excluido.
+    * @param id {@link String} identificando o registro a ser excluido.
     */
    @DELETE
    @Path("{id}")

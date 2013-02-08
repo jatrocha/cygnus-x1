@@ -82,7 +82,7 @@ public abstract class RESTServiceAdapter {
 
    /**
     * @param response {@link ClientResponse} resposta do servico.
-    * @param type {@link GenericType<T>} tipo da entidade esperado.
+    * @param type {@link GenericType} tipo da entidade esperado.
     * @return <T> instanciado com os valores recuperados do servico.
     */
    protected <T> T getResponseData(ClientResponse response, GenericType<T> type) {

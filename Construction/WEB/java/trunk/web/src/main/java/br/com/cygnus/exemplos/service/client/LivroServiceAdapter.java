@@ -63,7 +63,7 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @param dto {@link LivroDTO} a ser excluido.
+    * @param filter {@link LivroFilterDTO} contendo os dados do {@link LivroDTO} a ser excluido.
     */
    public void delete(LivroFilterDTO filter) {
 
@@ -73,10 +73,8 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
    }
 
    private static class ListaLivroDTOGenericType extends GenericType<List<LivroDTO>> {
-
    }
 
    private static class LivroDTOGenericType extends GenericType<LivroDTO> {
-
    }
 }

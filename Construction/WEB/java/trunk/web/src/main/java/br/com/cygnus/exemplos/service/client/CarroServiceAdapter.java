@@ -63,7 +63,7 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
    }
 
    /**
-    * @param dto {@link CarroFilterDTO} contendo os dados do {@link CarroDTO} a ser excluido.
+    * @param filter {@link CarroFilterDTO} contendo os dados do {@link CarroDTO} a ser excluido.
     */
    public void delete(CarroFilterDTO filter) {
 

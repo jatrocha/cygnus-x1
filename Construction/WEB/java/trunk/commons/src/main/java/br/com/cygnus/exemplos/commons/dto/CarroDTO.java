@@ -66,8 +66,8 @@ public class CarroDTO extends AbstractDTO {
    }
 
    /**
-    * @param id
-    * @return
+    * @param id {@link Long} identificador do registro.
+    * @return {@link CarroDTO} instanciado apenas com o identificador.
     */
    public static CarroDTO buildWith(Long id) {
 
