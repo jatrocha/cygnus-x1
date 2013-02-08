@@ -81,6 +81,7 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
     * @see br.com.cygnus.exemplos.business.DataManipulation#create(br.com.cygnus.framework.template.business.dto.AbstractDTO).
     */
    @Override
+   @Transactional(propagation = Propagation.REQUIRED)
    public void create(CarroDTO dto) {
 
       this.dataStore.save(new CarroDTOToCarroConverter().convert(dto));
@@ -99,9 +100,10 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
     * @see br.com.cygnus.exemplos.business.DataManipulation#delete(br.com.cygnus.framework.template.business.dto.AbstractDTO).
     */
    @Override
+   @Transactional(propagation = Propagation.REQUIRED)
    public void delete(CarroDTO dto) {
 
-      this.dataStore.delete(new CarroDTOToCarroConverter().convert(dto));
+      this.dataStore.delete(this.dataStore.find(Carro.class, dto.getId()));
    }
 
    private class CarroToCarroDTOConverter implements Converter<Carro, CarroDTO> {
