@@ -6,14 +6,13 @@ import javax.ws.rs.core.MediaType;
 
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.service.RESTServiceAdapter;
 
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.GenericType;
 
 /**
- * Adaptador de servico <code>REST</code> para consulta de {@link LivroDTO}.
+ * Adaptador de servico <code>REST</code> para consulta de {@link CarroDTO}.
  */
 public class CarroServiceAdapter extends RESTServiceAdapter {
 
@@ -28,8 +27,7 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
 
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_CARRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
-      GenericType<List<CarroDTO>> genericType = new GenericType<List<CarroDTO>>() {
-      };
+      GenericType<List<CarroDTO>> genericType = new ListCarroDTOGenericType();
 
       return this.getResponseData(clientResponse, genericType);
    }
@@ -43,8 +41,7 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).queryParam("id", filter.getId().toString())
             .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
-      GenericType<CarroDTO> genericType = new GenericType<CarroDTO>() {
-      };
+      GenericType<CarroDTO> genericType = new CarroDTOGenericType();
 
       return this.getResponseData(clientResponse, genericType);
    }
@@ -74,4 +71,11 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
 
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(path).delete(ClientResponse.class));
    }
+
+   private static class ListCarroDTOGenericType extends GenericType<List<CarroDTO>> {
+   }
+
+   private static class CarroDTOGenericType extends GenericType<CarroDTO> {
+   }
+
 }

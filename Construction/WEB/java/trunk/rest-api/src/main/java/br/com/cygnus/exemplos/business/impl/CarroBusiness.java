@@ -106,7 +106,7 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       this.dataStore.delete(this.dataStore.find(Carro.class, dto.getId()));
    }
 
-   private class CarroToCarroDTOConverter implements Converter<Carro, CarroDTO> {
+   private static class CarroToCarroDTOConverter implements Converter<Carro, CarroDTO> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
@@ -118,7 +118,7 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       }
    }
 
-   private class CarroDTOToCarroConverter implements Converter<CarroDTO, Carro> {
+   private static class CarroDTOToCarroConverter implements Converter<CarroDTO, Carro> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
@@ -130,7 +130,7 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       }
    }
 
-   private class ListCarroToListCarroDTOConverter implements Converter<List<Carro>, List<CarroDTO>> {
+   private static class ListCarroToListCarroDTOConverter implements Converter<List<Carro>, List<CarroDTO>> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).

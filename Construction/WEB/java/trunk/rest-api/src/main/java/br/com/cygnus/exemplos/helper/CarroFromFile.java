@@ -79,7 +79,7 @@ public class CarroFromFile implements LoadFromFile<Carro> {
          }
       } catch (IOException e) {
 
-         throw new EngineRuntimeException();
+         throw new EngineRuntimeException(e);
       }
 
       return list;

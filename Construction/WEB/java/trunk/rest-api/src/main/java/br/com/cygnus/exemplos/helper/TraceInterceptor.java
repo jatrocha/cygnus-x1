@@ -6,14 +6,17 @@ import org.apache.log4j.Logger;
 import org.springframework.aop.interceptor.CustomizableTraceInterceptor;
 
 /**
- * Extends {@link CustomizableTraceInterceptor} to provide custom logging levels
+ * Extends {@link CustomizableTraceInterceptor} to provide custom logging levels.
  */
 public class TraceInterceptor extends CustomizableTraceInterceptor {
 
    private static final long serialVersionUID = 287162721460370957L;
 
-   protected static Logger logger4J = Logger.getLogger("aop");
+   private static Logger logger4J = Logger.getLogger("aop");
 
+   /**
+    * @see org.springframework.aop.interceptor.CustomizableTraceInterceptor#writeToLog(org.apache.commons.logging.Log, java.lang.String, java.lang.Throwable).
+    */
    @Override
    protected void writeToLog(Log logger, String message, Throwable ex) {
 
@@ -24,11 +27,14 @@ public class TraceInterceptor extends CustomizableTraceInterceptor {
       } else {
 
          logger4J.debug(message);
-
       }
 
    }
 
+   /**
+    * @see org.springframework.aop.interceptor.AbstractTraceInterceptor#isInterceptorEnabled(org.aopalliance.intercept.MethodInvocation,
+    *      org.apache.commons.logging.Log).
+    */
    @Override
    protected boolean isInterceptorEnabled(MethodInvocation invocation, Log logger) {
 

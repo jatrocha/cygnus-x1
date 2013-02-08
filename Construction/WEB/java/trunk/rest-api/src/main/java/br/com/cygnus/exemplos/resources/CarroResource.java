@@ -19,10 +19,9 @@ import org.springframework.stereotype.Component;
 import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
-import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 
 /**
- * Endpoint REST para manipulação de {@link LivroDTO}.
+ * Endpoint REST para manipulação de {@link CarroDTO}.
  */
 @Component
 @Path("/carro")
@@ -43,7 +42,7 @@ public class CarroResource {
    }
 
    /**
-    * @return {@link LivroDTO} a partir do seu identificador.
+    * @return {@link CarroDTO} a partir do seu identificador.
     */
    @GET
    @Produces({ MediaType.APPLICATION_JSON })
@@ -73,7 +72,7 @@ public class CarroResource {
    }
 
    /**
-    * @param dto {@link LivroDTO} a ser excluido.
+    * @param dto {@link CarroDTO} a ser excluido.
     */
    @DELETE
    @Path("{id}")

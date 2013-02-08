@@ -135,7 +135,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
       }
    }
 
-   private class LivroDTOToLivroConverter implements Converter<LivroDTO, Livro> {
+   private static class LivroDTOToLivroConverter implements Converter<LivroDTO, Livro> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
@@ -148,7 +148,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
 
    }
 
-   private class LivroToLivroDTOConverter implements Converter<Livro, LivroDTO> {
+   private static class LivroToLivroDTOConverter implements Converter<Livro, LivroDTO> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
@@ -160,7 +160,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
       }
    }
 
-   private class ListLivroToListLivroDTOConverter implements Converter<List<Livro>, List<LivroDTO>> {
+   private static class ListLivroToListLivroDTOConverter implements Converter<List<Livro>, List<LivroDTO>> {
 
       /**
        * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object)

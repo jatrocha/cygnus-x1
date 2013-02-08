@@ -27,8 +27,7 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
 
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
-      GenericType<List<LivroDTO>> genericType = new GenericType<List<LivroDTO>>() {
-      };
+      GenericType<List<LivroDTO>> genericType = new ListaLivroDTOGenericType();
 
       return this.getResponseData(clientResponse, genericType);
    }
@@ -42,8 +41,7 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_LIVRO).queryParam("id", filter.getId()).accept(MediaType.APPLICATION_JSON)
             .get(ClientResponse.class);
 
-      GenericType<LivroDTO> genericType = new GenericType<LivroDTO>() {
-      };
+      GenericType<LivroDTO> genericType = new LivroDTOGenericType();
 
       return this.getResponseData(clientResponse, genericType);
    }
@@ -72,5 +70,13 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
       String path = URI_LIVRO.concat("/".concat(filter.getId()));
 
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(path).delete(ClientResponse.class));
+   }
+
+   private static class ListaLivroDTOGenericType extends GenericType<List<LivroDTO>> {
+
+   }
+
+   private static class LivroDTOGenericType extends GenericType<LivroDTO> {
+
    }
 }

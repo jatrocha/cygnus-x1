@@ -10,7 +10,6 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
 /**
@@ -31,7 +30,7 @@ public class LivroFromFile implements LoadFromFile<Livro> {
    private String delimiter;
 
    /**
-    * @param reader {@link java.io.BufferedReader} carregado as linhas do arquivo contendo os dados do {@link Carro}.
+    * @param reader {@link java.io.BufferedReader} carregado as linhas do arquivo contendo os dados do {@link Livro}.
     * @throws java.lang.IllegalArgumentException caso <code>reader</code> seja <code>null</code>.
     */
    public LivroFromFile(BufferedReader reader) {
@@ -78,7 +77,7 @@ public class LivroFromFile implements LoadFromFile<Livro> {
          }
       } catch (IOException e) {
 
-         throw new EngineRuntimeException();
+         throw new EngineRuntimeException(e);
       }
 
       return list;

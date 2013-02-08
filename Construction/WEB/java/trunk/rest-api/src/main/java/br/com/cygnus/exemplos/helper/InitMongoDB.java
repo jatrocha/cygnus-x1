@@ -9,13 +9,16 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
 /**
- * Service for initializing MongoDB with sample data using {@link MongoTemplate}
+ * Service for initializing MongoDB with sample data using {@link MongoTemplate}.
  */
 public class InitMongoDB {
 
    @Autowired
    private MongoTemplate mongoTemplate;
 
+   /**
+    * Initializes and loads data on the database.
+    */
    public void init() {
 
       // Drop existing collections
