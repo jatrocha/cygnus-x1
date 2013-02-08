@@ -14,17 +14,25 @@ import org.slf4j.LoggerFactory;
 
 import br.com.cygnus.exemplos.commons.dto.ErrorDTO;
 
+/**
+ * EngineExceptionMapper.
+ */
 @Provider
 public class EngineExceptionMapper implements ExceptionMapper<Exception> {
 
    private static final int HTTP_ERROR_500 = 500;
+
    private static final Logger LOG = LoggerFactory.getLogger(EngineExceptionMapper.class);
 
+   /**
+    * @see javax.ws.rs.ext.ExceptionMapper#toResponse(java.lang.Throwable).
+    */
    @Override
    public Response toResponse(Exception e) {
 
-      return Response.status(HTTP_ERROR_500).type(MediaType.APPLICATION_JSON).entity(new GenericEntity<List<ErrorDTO>>(getErrors(e)) {
-      }).build();
+      GenericEntity<List<ErrorDTO>> entity = new ErrorDTOGT(getErrors(e));
+
+      return Response.status(HTTP_ERROR_500).type(MediaType.APPLICATION_JSON).entity(entity).build();
 
    }
 
@@ -38,7 +46,7 @@ public class EngineExceptionMapper implements ExceptionMapper<Exception> {
 
       }
 
-      return ((EngineRuntimeException)e).getErrors().isEmpty() ? getErrorDTOAsList(e) : ((EngineRuntimeException)e).getErrors();
+      return ((EngineRuntimeException) e).getErrors().isEmpty() ? getErrorDTOAsList(e) : ((EngineRuntimeException) e).getErrors();
 
    }
 
@@ -52,4 +60,14 @@ public class EngineExceptionMapper implements ExceptionMapper<Exception> {
 
    }
 
+   private static class ErrorDTOGT extends GenericEntity<List<ErrorDTO>> {
+
+      /**
+       * @param entity
+       */
+      public ErrorDTOGT(List<ErrorDTO> entity) {
+
+         super(entity);
+      }
+   }
 }

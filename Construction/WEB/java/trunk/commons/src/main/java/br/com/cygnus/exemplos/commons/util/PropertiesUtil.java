@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 
+/**
+ * Responsavel por ler valores indexados por chaves em arquivo texto.
+ */
 public final class PropertiesUtil {
 
    private static final Logger LOG = Logger.getAnonymousLogger();
@@ -25,28 +28,40 @@ public final class PropertiesUtil {
       }
    }
 
+   /**
+    * @return {@link PropertiesUtil} singleton.
+    */
    public static PropertiesUtil getInstance() {
+
       return instance;
    }
 
+   /**
+    * @param key {@link String} chave para identificar o valor desejado.
+    * @param parameters {@link Object} varargs para substituicao dos <code>coringas</code> por valores.
+    * @return {@link String} contendo o valor desejado.
+    */
    public String getString(String key, Object... parameters) {
 
       return replaceParameters(this.config.getString(key), parameters);
 
    }
 
-   public static String replaceParameters(String string, Object... parameters) {
+   /**
+    * @param string {@link origem}
+    * @param parameters {@link Object} varargs para substituicao dos <code>coringas</code> por valores.
+    * @return {@link String} contendo o valor desejado.
+    */
+   protected final static String replaceParameters(final String string, final Object... parameters) {
 
       if (string == null) {
 
          return null;
-
       }
 
       if (parameters == null) {
 
          return string;
-
       }
 
       int counter = 1;

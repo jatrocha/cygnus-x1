@@ -13,6 +13,9 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+/**
+ * Ponte para que o JQuery local possa ler resultado do servico disponivel no endpoint rest.
+ */
 public class CarroServlet extends HttpServlet {
 
    private static final String CONTENT_TYPE = "application/json";

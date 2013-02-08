@@ -33,4 +33,12 @@ public class InitMongoDB {
          this.mongoTemplate.save(livro);
       }
    }
+
+   /**
+    * @param mongoTemplate the mongoTemplate to set.
+    */
+   protected final void setMongoTemplate(MongoTemplate mongoTemplate) {
+
+      this.mongoTemplate = mongoTemplate;
+   }
 }

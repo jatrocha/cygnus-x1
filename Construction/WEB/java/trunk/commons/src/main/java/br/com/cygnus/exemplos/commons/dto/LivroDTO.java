@@ -4,6 +4,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import br.com.cygnus.framework.template.business.dto.AbstractDTO;
 
+/**
+ * Transferencia de dados do <code>Livro</carro.
+ */
 @XmlRootElement
 public final class LivroDTO extends AbstractDTO {
 

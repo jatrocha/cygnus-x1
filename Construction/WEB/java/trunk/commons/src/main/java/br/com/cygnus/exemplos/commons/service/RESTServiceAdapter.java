@@ -28,7 +28,7 @@ public abstract class RESTServiceAdapter {
 
    protected static final int HTTP_CODE_400 = 400;
 
-   private Client client;
+   private final Client client;
 
    private WebResource resource;
 
@@ -63,9 +63,12 @@ public abstract class RESTServiceAdapter {
       }
 
       return this.client.resource(PropertiesUtil.getInstance().getString("engine.root.url") + path);
-
    }
 
+   /**
+    * @param url {@link String} url do servico.
+    * @return {@link WebResource} configurado
+    */
    public WebResource getWebResource(String url) {
 
       if (this.resource != null) {
@@ -77,6 +80,11 @@ public abstract class RESTServiceAdapter {
       return this.client.resource(url);
    }
 
+   /**
+    * @param response {@link ClientResponse} resposta do servico.
+    * @param type {@link GenericType<T>} tipo da entidade esperado.
+    * @return <T> instanciado com os valores recuperados do servico.
+    */
    protected <T> T getResponseData(ClientResponse response, GenericType<T> type) {
 
       if (this.isValidHttpResponse(response)) {
@@ -94,23 +102,9 @@ public abstract class RESTServiceAdapter {
       throw this.createRuntimeException(response);
    }
 
-   protected <T> T getResponseData(ClientResponse response, Class<T> clazz) {
-
-      if (this.isValidHttpResponse(response)) {
-
-         if (clazz == null) {
-
-            return null;
-
-         }
-
-         return response.getEntity(clazz);
-
-      }
-
-      throw this.createRuntimeException(response);
-   }
-
+   /**
+    * @param response {@link ClientResponse}.
+    */
    protected void getResponseData(ClientResponse response) {
 
       if (this.isValidHttpResponse(response)) {
@@ -127,13 +121,17 @@ public abstract class RESTServiceAdapter {
       return response.getStatus() < HTTP_CODE_400;
    }
 
+   /**
+    * @param response {@link ClientResponse} resposta do servico.
+    * @return {@link EngineRuntimeException} instanciado.
+    */
    protected EngineRuntimeException createRuntimeException(ClientResponse response) {
 
       List<ErrorDTO> errors;
 
       try {
 
-         errors = response.getEntity(this.getGenericTypeForErrorDTO());
+         errors = response.getEntity(new ErrorDTOGenericType());
 
       } catch (ClientHandlerException e) {
 
@@ -142,26 +140,19 @@ public abstract class RESTServiceAdapter {
       } catch (UniformInterfaceException e) {
 
          return new EngineRuntimeException(e);
-
       }
 
       return new EngineRuntimeException(errors);
    }
 
-   protected GenericType<List<ErrorDTO>> getGenericTypeForErrorDTO() {
-
-      return new GenericType<List<ErrorDTO>>() {
-      };
-   }
-
+   /**
+    * @param resource {@link WebResource}.
+    */
    public void setWebResource(WebResource resource) {
 
       this.resource = resource;
    }
 
-   public void setClient(Client client) {
-
-      this.client = client;
+   private static class ErrorDTOGenericType extends GenericType<List<ErrorDTO>> {
    }
-
 }
