@@ -13,6 +13,7 @@ import br.com.cygnus.exemplos.business.DataManipulation;
 import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
+import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.framework.template.business.converter.Converter;
@@ -79,8 +80,8 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
     */
    @Override
    public void create(CarroDTO dto) {
-      // TODO Auto-generated method stub
 
+      this.dataStore.save(new CarroDTOToCarroConverter().convert(dto));
    }
 
    /**
@@ -99,6 +100,18 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
    public void delete(CarroDTO dto) {
       // TODO Auto-generated method stub
 
+   }
+
+   private class CarroDTOToCarroConverter implements Converter<CarroDTO, Carro> {
+
+      /**
+       * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
+       */
+      @Override
+      public Carro convert(CarroDTO source) {
+
+         return new Carro(source.getId(), Marca.valueOf(source.getMarca()), source.getModelo(), source.getVersao(), source.getMotor());
+      }
    }
 
 }

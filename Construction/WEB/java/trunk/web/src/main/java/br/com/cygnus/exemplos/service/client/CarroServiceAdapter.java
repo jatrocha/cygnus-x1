@@ -33,4 +33,12 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
       return this.getResponseData(clientResponse, genericType);
    }
 
+   /**
+    * @param dto {@link CarroDTO} a ser inserido.
+    */
+   public void create(CarroDTO dto) {
+
+      super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, dto));
+   }
+
 }
