@@ -35,7 +35,7 @@ public class LivroServiceAdapter extends RESTServiceAdapter {
 
    /**
     * @param filter {@link LivroFilterDTO}.
-    * @return {@link LivroDTO} recuperado a partir do seu identificador, <code>null</code> caso não seja encontrado.
+    * @return {@link LivroDTO} recuperado a partir do seu identificador, <code>null</code> caso nao seja encontrado.
     */
    public LivroDTO read(LivroFilterDTO filter) {
 

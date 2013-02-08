@@ -36,7 +36,7 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
 
    /**
     * @param filter {@link CarroFilterDTO}.
-    * @return {@link CarroDTO} recuperado a partir do seu identificador, <code>null</code> caso não seja encontrado.
+    * @return {@link CarroDTO} recuperado a partir do seu identificador, <code>null</code> caso nao seja encontrado.
     */
    public CarroDTO read(CarroFilterDTO filter) {
 
@@ -55,6 +55,14 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
    public void create(CarroDTO dto) {
 
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, dto));
+   }
+
+   /**
+    * @param dto {@link CarroDTO} a ser atualizado.
+    */
+   public void update(CarroDTO dto) {
+
+      super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).type(MediaType.APPLICATION_JSON).put(ClientResponse.class, dto));
    }
 
 }

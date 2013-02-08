@@ -18,6 +18,9 @@ import br.com.cygnus.exemplos.datastore.CarroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.framework.template.business.converter.Converter;
 
+/**
+ * Manipulacao de {@link CarroDTO}s.
+ */
 @Service
 public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<CarroFilterDTO, CarroDTO> {
 
@@ -40,7 +43,6 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       this();
 
       this.dataStore = dataStore;
-
    }
 
    /**
@@ -89,8 +91,8 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
     */
    @Override
    public void update(CarroDTO dto) {
-      // TODO Auto-generated method stub
 
+      this.dataStore.update(new CarroDTOToCarroConverter().convert(dto));
    }
 
    /**
