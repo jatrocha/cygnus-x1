@@ -100,8 +100,8 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
     */
    @Override
    public void delete(CarroDTO dto) {
-      // TODO Auto-generated method stub
 
+      this.dataStore.delete(new CarroDTOToCarroConverter().convert(dto));
    }
 
    private class CarroToCarroDTOConverter implements Converter<Carro, CarroDTO> {
@@ -114,7 +114,6 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
 
          return CarroDTO.buildWith(source.getId(), source.getMarca().name(), source.getModelo(), source.getVersao(), source.getMotor());
       }
-
    }
 
    private class CarroDTOToCarroConverter implements Converter<CarroDTO, Carro> {

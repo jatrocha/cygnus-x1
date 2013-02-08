@@ -65,4 +65,13 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
       super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).type(MediaType.APPLICATION_JSON).put(ClientResponse.class, dto));
    }
 
+   /**
+    * @param dto {@link CarroFilterDTO} contendo os dados do {@link CarroDTO} a ser excluido.
+    */
+   public void delete(CarroFilterDTO filter) {
+
+      String path = URI_CARRO.concat("/".concat(filter.getId().toString()));
+
+      super.getResponseData(this.getWebResourceAbsolutePathRESTAPI(path).delete(ClientResponse.class));
+   }
 }

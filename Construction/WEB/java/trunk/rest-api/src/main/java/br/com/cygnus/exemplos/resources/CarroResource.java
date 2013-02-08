@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -68,6 +70,16 @@ public class CarroResource {
    public void update(CarroDTO dto) {
 
       this.business.update(dto);
+   }
+
+   /**
+    * @param dto {@link LivroDTO} a ser excluido.
+    */
+   @DELETE
+   @Path("{id}")
+   public void delete(@PathParam("id") String id) {
+
+      this.business.delete(CarroDTO.buildWith(Long.valueOf(id)));
    }
 
    /**
