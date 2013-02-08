@@ -49,8 +49,8 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
    @Override
    @Transactional(propagation = Propagation.NEVER)
    public CarroDTO read(CarroFilterDTO dto) {
-      // TODO Auto-generated method stub
-      return null;
+
+      return new CarroToCarroDTOConverter().convert(this.dataStore.find(Carro.class, dto.getId()));
    }
 
    /**
@@ -62,7 +62,7 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
 
       final List<Carro> list = this.dataStore.list();
 
-      return new CarroListConverter().convert(list);
+      return new ListCarroToListCarroDTOConverter().convert(list);
    }
 
    /**
@@ -102,6 +102,19 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
 
    }
 
+   private class CarroToCarroDTOConverter implements Converter<Carro, CarroDTO> {
+
+      /**
+       * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
+       */
+      @Override
+      public CarroDTO convert(Carro source) {
+
+         return CarroDTO.buildWith(source.getId(), source.getMarca().name(), source.getModelo(), source.getVersao(), source.getMotor());
+      }
+
+   }
+
    private class CarroDTOToCarroConverter implements Converter<CarroDTO, Carro> {
 
       /**
@@ -114,23 +127,23 @@ public class CarroBusiness implements DataManipulation<CarroDTO>, DataQuery<Carr
       }
    }
 
-}
+   private class ListCarroToListCarroDTOConverter implements Converter<List<Carro>, List<CarroDTO>> {
 
-class CarroListConverter implements Converter<List<Carro>, List<CarroDTO>> {
+      /**
+       * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
+       */
+      @Override
+      public List<CarroDTO> convert(List<Carro> source) {
 
-   /**
-    * @see br.com.cygnus.framework.template.business.converter.Converter#convert(java.lang.Object).
-    */
-   @Override
-   public List<CarroDTO> convert(List<Carro> source) {
+         List<CarroDTO> retorno = new ArrayList<CarroDTO>();
 
-      List<CarroDTO> retorno = new ArrayList<CarroDTO>();
+         for (Carro carro : source) {
 
-      for (Carro carro : source) {
+            retorno.add(new CarroToCarroDTOConverter().convert(carro));
+         }
 
-         retorno.add(CarroDTO.buildWith(carro.getId(), carro.getMarca().name(), carro.getModelo(), carro.getVersao(), carro.getMotor()));
+         return retorno;
       }
-
-      return retorno;
    }
+
 }

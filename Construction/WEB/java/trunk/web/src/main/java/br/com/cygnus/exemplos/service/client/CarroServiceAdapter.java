@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ws.rs.core.MediaType;
 
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
+import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.service.RESTServiceAdapter;
 
@@ -28,6 +29,21 @@ public class CarroServiceAdapter extends RESTServiceAdapter {
       ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_CARRO_LIST).accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
 
       GenericType<List<CarroDTO>> genericType = new GenericType<List<CarroDTO>>() {
+      };
+
+      return this.getResponseData(clientResponse, genericType);
+   }
+
+   /**
+    * @param filter {@link CarroFilterDTO}.
+    * @return {@link CarroDTO} recuperado a partir do seu identificador, <code>null</code> caso não seja encontrado.
+    */
+   public CarroDTO read(CarroFilterDTO filter) {
+
+      ClientResponse clientResponse = this.getWebResourceAbsolutePathRESTAPI(URI_CARRO).queryParam("id", filter.getId().toString())
+            .accept(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+
+      GenericType<CarroDTO> genericType = new GenericType<CarroDTO>() {
       };
 
       return this.getResponseData(clientResponse, genericType);

@@ -8,12 +8,14 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
 import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
+import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 
 /**
@@ -35,6 +37,16 @@ public class CarroResource {
    public List<CarroDTO> findAll() {
 
       return this.business.findAll();
+   }
+
+   /**
+    * @return {@link LivroDTO} a partir do seu identificador.
+    */
+   @GET
+   @Produces({ MediaType.APPLICATION_JSON })
+   public CarroDTO read(@QueryParam("id") String id) {
+
+      return this.business.read(CarroFilterDTO.buildWith(Long.valueOf(id)));
    }
 
    /**
