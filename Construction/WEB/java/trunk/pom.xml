@@ -13,7 +13,6 @@
 	<description>Provas de Conceito e exemplos de implementação de tecnologias.</description>
 
 	<modules>
-		<module>mongodb</module>
 		<module>commons</module>
 		<module>rest-api</module>
 		<module>web</module>
