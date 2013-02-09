@@ -43,7 +43,7 @@ public final class PropertiesUtil {
     */
    public String getString(String key, Object... parameters) {
 
-      return replaceParameters(this.config.getString(key), parameters);
+      return this.replaceParameters(this.config.getString(key), parameters);
 
    }
 
@@ -52,7 +52,7 @@ public final class PropertiesUtil {
     * @param parameters {@link Object} varargs para substituicao dos <code>coringas</code> por valores.
     * @return {@link String} contendo o valor desejado.
     */
-   protected final static String replaceParameters(final String string, final Object... parameters) {
+   protected String replaceParameters(final String string, final Object... parameters) {
 
       if (string == null) {
 

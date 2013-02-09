@@ -3,7 +3,8 @@ package br.com.cygnus.exemplos.helper;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import br.com.cygnus.exemplos.persistence.model.Livro;
@@ -13,8 +14,26 @@ import br.com.cygnus.exemplos.persistence.model.Livro;
  */
 public class InitMongoDB {
 
-   @Autowired
+   @Resource
    private MongoTemplate mongoTemplate;
+
+   /**
+    * Construtor padrao.
+    */
+   public InitMongoDB() {
+
+      super();
+   }
+
+   /**
+    * @param mongoTemplate {@link MongoTemplate}.
+    */
+   public InitMongoDB(MongoTemplate mongoTemplate) {
+
+      this();
+
+      this.mongoTemplate = mongoTemplate;
+   }
 
    /**
     * Initializes and loads data on the database.
@@ -34,11 +53,4 @@ public class InitMongoDB {
       }
    }
 
-   /**
-    * @param mongoTemplate the mongoTemplate to set.
-    */
-   protected final void setMongoTemplate(MongoTemplate mongoTemplate) {
-
-      this.mongoTemplate = mongoTemplate;
-   }
 }
