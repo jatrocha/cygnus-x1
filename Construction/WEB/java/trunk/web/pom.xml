@@ -19,9 +19,9 @@
 	</parent>
 
 	<scm>
-		<connection>scm:svn:http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/web</connection>
-		<developerConnection>scm:svn:http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/web</developerConnection>
-		<url>http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/web</url>
+		<connection>scm:svn:https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/web</connection>
+		<developerConnection>scm:svn:https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/web</developerConnection>
+		<url>https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/web</url>
 	</scm>
 
 

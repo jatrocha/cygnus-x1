@@ -19,9 +19,9 @@
 	</parent>
 
 	<scm>
-		<connection>scm:svn:http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/rest-api</connection>
-		<developerConnection>scm:svn:http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/rest-api</developerConnection>
-		<url>http://ic.cygnus-x1.com.br/svn/exemplos/Construction/WEB/java/trunk/rest-api</url>
+		<connection>scm:svn:https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/rest-api</connection>
+		<developerConnection>scm:svn:https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/rest-api</developerConnection>
+		<url>https://cygnus-x1.googlecode.com/svn/Construction/WEB/java/trunk/rest-api</url>
 	</scm>
 
 	<build>
@@ -349,6 +349,27 @@
 		<!-- <version>3.1.0.RELEASE</version> -->
 		<!-- <type>jar</type> -->
 		<!-- </dependency> -->
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lordofthejars</groupId>
+			<artifactId>nosqlunit-core</artifactId>
+			<version>0.7.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.lordofthejars</groupId>
+			<artifactId>nosqlunit-mongodb</artifactId>
+			<version>0.7.0</version>
+			<scope>test</scope>
+		</dependency>
 
 
 	</dependencies>
