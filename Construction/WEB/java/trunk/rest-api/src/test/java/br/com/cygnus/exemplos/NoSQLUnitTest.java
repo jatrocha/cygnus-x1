@@ -6,6 +6,7 @@ import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder
 import javax.annotation.Resource;
 
 import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,11 +23,12 @@ import com.lordofthejars.nosqlunit.mongodb.MongoDbRule;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
 @ActiveProfiles("test")
+@Ignore
 // @UsingDataSet(locations = "all-logs.json", loadStrategy = LoadStrategyEnum.CLEAN_INSERT)
 public class NoSQLUnitTest {
 
    @ClassRule
-   public static ManagedMongoDb managedMongoDb = newManagedMongoDbRule().mongodPath("/opt/mongodb").appendSingleCommandLineArguments("--nojournal").build();
+   public static ManagedMongoDb managedMongoDb = newManagedMongoDbRule().mongodPath("/opt/mongodb").build();
 
    @Rule
    public MongoDbRule mongoDbRule = newMongoDbRule().defaultManagedMongoDb("logs");
