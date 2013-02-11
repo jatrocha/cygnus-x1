@@ -41,6 +41,7 @@ public class LivroBusiness implements DataQuery<LivroFilterDTO, LivroDTO>, DataM
       this();
 
       this.repository = repository;
+
    }
 
    /**

@@ -21,7 +21,7 @@ import de.flapdoodle.embed.mongo.config.MongodConfig;
 import de.flapdoodle.embed.mongo.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
 
-public class AnotherTest {
+public class YetAnotherTest {
 
    private MongodExecutable mongodExecutable;
    private MongodProcess mongodProcess;
