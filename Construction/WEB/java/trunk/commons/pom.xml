@@ -4,7 +4,7 @@
 
 	<groupId>examples</groupId>
 	<artifactId>commons</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>Commons</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>examples</groupId>
 		<artifactId>examples</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -47,7 +47,6 @@
 		<dependency>
 			<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
-			<version>1.8</version>
 		</dependency>
 
 		<dependency>
