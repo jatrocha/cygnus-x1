@@ -172,7 +172,7 @@ public class LivroFromFileTest {
 
       Livro livro = new LivroFromFile(reader).withDelimiter(delimiter).parseLine("83df89af-9824-400e-9eab-dd13408d9e29#Biblia##Religi‹o");
 
-      assertNull(livro.getId());
+      assertEquals("83df89af-9824-400e-9eab-dd13408d9e29", livro.getId());
 
       assertEquals("Biblia", livro.getTitulo());
 
@@ -190,7 +190,7 @@ public class LivroFromFileTest {
 
       Livro livro = new LivroFromFile(reader).withDelimiter(delimiter).parseLine("83df89af-9824-400e-9eab-dd13408d9e31#David Copperfield#Charles Dickens#Classico");
 
-      assertNull(livro.getId());
+      assertEquals("83df89af-9824-400e-9eab-dd13408d9e31", livro.getId());
 
       assertEquals("David Copperfield", livro.getTitulo());
 
@@ -198,6 +198,5 @@ public class LivroFromFileTest {
 
       assertEquals("Classico", livro.getGenero());
    }
-
 
 }

@@ -19,6 +19,8 @@ import br.com.cygnus.exemplos.persistence.model.Livro;
  */
 public class LivroFromFile implements LoadFromFile<Livro> {
 
+   private static final int ID_POSITION = 0;
+
    private static final int TITULO_POSITION = 1;
 
    private static final int AUTOR_POSITION = 2;
@@ -97,12 +99,14 @@ public class LivroFromFile implements LoadFromFile<Livro> {
 
       String[] array = line.split(this.delimiter);
 
+      String id = array[ID_POSITION];
+
       String titulo = array[TITULO_POSITION];
 
       String autor = StringUtils.isEmpty(array[AUTOR_POSITION]) ? null : array[AUTOR_POSITION];
 
       String genero = array[GENERO_POSITION];
 
-      return new Livro(null, titulo, autor, genero);
+      return new Livro(id, titulo, autor, genero);
    }
 }
