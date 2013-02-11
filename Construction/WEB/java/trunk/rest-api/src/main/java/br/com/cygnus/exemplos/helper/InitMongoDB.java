@@ -1,7 +1,6 @@
 package br.com.cygnus.exemplos.helper;
 
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 
@@ -46,8 +45,6 @@ public class InitMongoDB {
       List<Livro> livros = new LivroFromFile(new FileReaderUtil().read("livros.txt")).withDelimiter("#").load();
 
       for (Livro livro : livros) {
-
-         livro.setId(UUID.randomUUID().toString());
 
          this.mongoTemplate.save(livro);
       }
