@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 
 /**
- * Repositório onde são armazenados os {@link Livro}. Atualmente utilizando banco de dados NoSQL (MongoDB).
+ * Repositorio onde sao armazenados os {@link Livro}. Atualmente utilizando banco de dados NoSQL (MongoDB).
  * 
  * @see MongoRepository
  */
