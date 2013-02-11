@@ -59,10 +59,9 @@ public abstract class RESTServiceAdapter {
       if (this.resource != null) {
 
          return this.resource.path(path);
-
       }
 
-      return this.client.resource(PropertiesUtil.getInstance().getString("engine.root.url") + path);
+      return this.getWebResource(PropertiesUtil.getInstance().getString("engine.root.url") + path);
    }
 
    /**
@@ -74,7 +73,6 @@ public abstract class RESTServiceAdapter {
       if (this.resource != null) {
 
          return this.resource.path(url);
-
       }
 
       return this.client.resource(url);
@@ -92,11 +90,9 @@ public abstract class RESTServiceAdapter {
          if (type == null) {
 
             return null;
-
          }
 
          return response.getEntity(type);
-
       }
 
       throw this.createRuntimeException(response);
@@ -110,7 +106,6 @@ public abstract class RESTServiceAdapter {
       if (this.isValidHttpResponse(response)) {
 
          return;
-
       }
 
       throw this.createRuntimeException(response);
