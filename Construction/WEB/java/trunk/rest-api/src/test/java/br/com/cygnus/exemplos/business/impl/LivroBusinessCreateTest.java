@@ -93,6 +93,5 @@ public class LivroBusinessCreateTest extends LivroBusinessTestBase {
       this.business.create(this.LIVRO_PARA_INCLUSAO);
 
       assertTrue(Boolean.TRUE);
-
    }
 }

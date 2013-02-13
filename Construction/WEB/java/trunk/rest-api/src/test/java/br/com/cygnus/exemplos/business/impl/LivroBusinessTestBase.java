@@ -52,7 +52,7 @@ public abstract class LivroBusinessTestBase {
 
       MongodStarter runtime = MongodStarter.getDefaultInstance();
 
-      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_2_1, 27017, Network.localhostIsIPv6()));
+      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_0_6, 27017, Network.localhostIsIPv6()));
 
       mongodProcess = mongodExecutable.start();
 
