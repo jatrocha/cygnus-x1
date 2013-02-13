@@ -4,7 +4,6 @@ import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEV
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import javax.annotation.Resource;
 
@@ -100,8 +99,19 @@ public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
    @Test
    public void testDelete() {
 
-      this.business.delete(this.LIVRO_COM_ID);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
-      assertTrue(Boolean.TRUE);
+      this.context.checking(new Expectations() {
+
+         {
+
+            this.one(repositoryMock).delete(LivroBusinessDeleteTest.this.ID);
+         }
+
+      });
+
+      new LivroBusiness(repositoryMock).delete(this.LIVRO_COM_ID);
+
+      this.context.assertIsSatisfied();
    }
 }
