@@ -67,32 +67,32 @@
 
 			</plugin>
 
-			<plugin>
-				<groupId>com.github.joelittlejohn.embedmongo</groupId>
-				<artifactId>embedmongo-maven-plugin</artifactId>
-				<version>0.1.5</version>
-				<executions>
-					<execution>
-						<id>start</id>
-						<goals>
-							<goal>start</goal>
-						</goals>
-						<phase>compile</phase>
-						<configuration>
-							<port>27017</port>
-							<version>2.0.6</version>
-							<databaseDirectory>/tmp/mongotest</databaseDirectory>
-							<logging>console</logging>
-						</configuration>
-					</execution>
-					<execution>
-						<id>stop</id>
-						<goals>
-							<goal>stop</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>com.github.joelittlejohn.embedmongo</groupId> -->
+<!-- 				<artifactId>embedmongo-maven-plugin</artifactId> -->
+<!-- 				<version>0.1.5</version> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<id>start</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>start</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>compile</phase> -->
+<!-- 						<configuration> -->
+<!-- 							<port>27017</port> -->
+<!-- 							<version>2.0.6</version> -->
+<!-- 							<databaseDirectory>/tmp/mongotest</databaseDirectory> -->
+<!-- 							<logging>console</logging> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 					<execution> -->
+<!-- 						<id>stop</id> -->
+<!-- 						<goals> -->
+<!-- 							<goal>stop</goal> -->
+<!-- 						</goals> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 
 		</plugins>
 

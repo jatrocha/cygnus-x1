@@ -7,7 +7,7 @@ import br.com.cygnus.exemplos.persistence.model.Livro;
 
 public abstract class LivroBusinessTestBase {
 
-   protected final String ID = "1";
+   protected final String ID = "83df89af-9824-400e-9eab-dd13408d9e30";
 
    protected final LivroDTO LIVRO_VAZIO = new LivroDTO();
 
@@ -25,6 +25,6 @@ public abstract class LivroBusinessTestBase {
 
    protected final LivroFilterDTO LIVRO_FILTER_COM_ID = LivroFilterDTO.buildWith(this.ID);
 
-   protected final Livro LIVRO_PARA_LEITURA = new Livro(this.ID, "titulo", "autor", "genero");
+   protected final Livro LIVRO_PARA_LEITURA = new Livro(this.ID, "A Moreninha", "Machado de Assis", "Ficcao");
 
 }

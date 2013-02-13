@@ -5,23 +5,51 @@ import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
+import javax.annotation.Resource;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
+import br.com.cygnus.exemplos.helper.InitMongoDB;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
+import com.mongodb.Mongo;
+
+import de.flapdoodle.embed.mongo.MongodExecutable;
+import de.flapdoodle.embed.mongo.MongodProcess;
+import de.flapdoodle.embed.mongo.MongodStarter;
+import de.flapdoodle.embed.mongo.config.MongodConfig;
+import de.flapdoodle.embed.mongo.distribution.Version;
+import de.flapdoodle.embed.process.runtime.Network;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class LivroBusinessReadTest extends LivroBusinessTestBase {
+
+   @Resource
+   private LivroBusiness business;
 
    private Mockery context;
 
+   private static MongodExecutable mongodExecutable;
+   private static MongodProcess mongodProcess;
+   private static Mongo mongo;
+   private static MongoTemplate mongoTemplate;
+
    @Before
-   public void init() throws Exception {
+   public void init() {
 
       this.context = new Mockery() {
 
@@ -34,27 +62,51 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
    }
 
    @After
-   public void tearDown() throws Exception {
+   public void tearDown() {
 
       this.context = null;
+   }
+
+   @BeforeClass
+   public static void before() throws Exception {
+
+      MongodStarter runtime = MongodStarter.getDefaultInstance();
+
+      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_0_6, 27017, Network.localhostIsIPv6()));
+
+      mongodProcess = mongodExecutable.start();
+
+      mongo = new Mongo("localhost", 27017);
+
+      mongoTemplate = new MongoTemplate(mongo, "exemplos");
+
+      new InitMongoDB(mongoTemplate).init();
+   }
+
+   @AfterClass
+   public static void destroy() throws Exception {
+
+      mongodProcess.stop();
+
+      mongodExecutable.stop();
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoParametroInvalidoNull() {
 
-      new LivroBusiness().read(null);
+      this.business.read(null);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoIdInvalidoNull() {
 
-      new LivroBusiness().read(this.LIVRO_FILTER_VAZIO);
+      this.business.read(this.LIVRO_FILTER_VAZIO);
    }
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoIdInvalidoVazio() {
 
-      new LivroBusiness().read(this.LIVRO_FILTER_ID_VAZIO);
+      this.business.read(this.LIVRO_FILTER_ID_VAZIO);
    }
 
    @Test
@@ -92,20 +144,7 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
    @Test
    public void testRead() {
 
-      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
-
-      this.context.checking(new Expectations() {
-
-         {
-
-            this.one(repositoryMock).findOne(LivroBusinessReadTest.this.ID);
-
-            this.will(returnValue(LivroBusinessReadTest.this.LIVRO_PARA_LEITURA));
-         }
-
-      });
-
-      LivroDTO livroDTO = new LivroBusiness(repositoryMock).read(this.LIVRO_FILTER_COM_ID);
+      LivroDTO livroDTO = this.business.read(this.LIVRO_FILTER_COM_ID);
 
       assertEquals(this.LIVRO_PARA_LEITURA.getId(), livroDTO.getId());
 
