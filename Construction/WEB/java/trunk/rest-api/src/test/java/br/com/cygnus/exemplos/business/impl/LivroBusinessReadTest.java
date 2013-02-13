@@ -11,28 +11,15 @@ import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
-import br.com.cygnus.exemplos.helper.InitMongoDB;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
-
-import com.mongodb.Mongo;
-
-import de.flapdoodle.embed.mongo.MongodExecutable;
-import de.flapdoodle.embed.mongo.MongodProcess;
-import de.flapdoodle.embed.mongo.MongodStarter;
-import de.flapdoodle.embed.mongo.config.MongodConfig;
-import de.flapdoodle.embed.mongo.distribution.Version;
-import de.flapdoodle.embed.process.runtime.Network;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:applicationContext.xml")
@@ -43,10 +30,7 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
    private Mockery context;
 
-   private static MongodExecutable mongodExecutable;
-   private static MongodProcess mongodProcess;
-   private static Mongo mongo;
-   private static MongoTemplate mongoTemplate;
+
 
    @Before
    public void init() {
@@ -67,29 +51,7 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
       this.context = null;
    }
 
-   @BeforeClass
-   public static void before() throws Exception {
 
-      MongodStarter runtime = MongodStarter.getDefaultInstance();
-
-      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_2_1, 27017, Network.localhostIsIPv6()));
-
-      mongodProcess = mongodExecutable.start();
-
-      mongo = new Mongo("localhost", 27017);
-
-      mongoTemplate = new MongoTemplate(mongo, "exemplos");
-
-      new InitMongoDB(mongoTemplate).init();
-   }
-
-   @AfterClass
-   public static void destroy() throws Exception {
-
-      mongodProcess.stop();
-
-      mongodExecutable.stop();
-   }
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoParametroInvalidoNull() {
@@ -154,4 +116,5 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
       assertEquals(this.LIVRO_PARA_LEITURA.getGenero(), livroDTO.getGenero());
    }
+
 }
