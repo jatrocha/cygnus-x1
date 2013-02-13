@@ -72,7 +72,7 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
       MongodStarter runtime = MongodStarter.getDefaultInstance();
 
-      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_0_6, 27017, Network.localhostIsIPv6()));
+      mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_2_1, 27017, Network.localhostIsIPv6()));
 
       mongodProcess = mongodExecutable.start();
 
@@ -153,7 +153,5 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
       assertEquals(this.LIVRO_PARA_LEITURA.getAutor(), livroDTO.getAutor());
 
       assertEquals(this.LIVRO_PARA_LEITURA.getGenero(), livroDTO.getGenero());
-
-      this.context.assertIsSatisfied();
    }
 }
