@@ -16,6 +16,7 @@
 		<module>commons</module>
 		<module>rest-api</module>
 		<module>web</module>
+		<module>web-wicket</module>
 	</modules>
 
 	<parent>
