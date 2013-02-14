@@ -30,8 +30,6 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
    private Mockery context;
 
-
-
    @Before
    public void init() {
 
@@ -50,8 +48,6 @@ public class LivroBusinessReadTest extends LivroBusinessTestBase {
 
       this.context = null;
    }
-
-
 
    @Test(expected = IllegalArgumentException.class)
    public void testReadQuandoParametroInvalidoNull() {
