@@ -5,22 +5,33 @@ import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
+import javax.annotation.Resource;
+
 import org.jmock.Expectations;
 import org.jmock.Mockery;
 import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:applicationContext.xml")
+public class LivroBusinessReadIT extends LivroBusinessTestBase {
+
+   @Resource
+   private LivroBusiness business;
 
    private Mockery context;
 
    @Before
-   public void init() throws Exception {
+   public void init() {
 
       this.context = new Mockery() {
 
@@ -33,31 +44,31 @@ public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
    }
 
    @After
-   public void tearDown() throws Exception {
+   public void tearDown() {
 
       this.context = null;
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testDeleteQuandoParametroInvalidoNull() {
+   public void testReadQuandoParametroInvalidoNull() {
 
-      new LivroBusiness().delete(null);
+      this.business.read(null);
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testDeleteQuandoIdInvalidoNull() {
+   public void testReadQuandoIdInvalidoNull() {
 
-      new LivroBusiness().delete(this.LIVRO_VAZIO);
+      this.business.read(this.LIVRO_FILTER_VAZIO);
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void testDeleteQuandoIdInvalidoVazio() {
+   public void testReadQuandoIdInvalidoVazio() {
 
-      new LivroBusiness().delete(this.LIVRO_COM_ID_VAZIO);
+      this.business.read(this.LIVRO_FILTER_ID_VAZIO);
    }
 
    @Test
-   public void testDeleteQuandoErroGeral() {
+   public void testReadQuandoErroGeral() {
 
       final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
@@ -65,16 +76,18 @@ public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
 
          {
 
-            this.one(repositoryMock).delete(LivroBusinessDeleteTest.this.ID);
+            this.one(repositoryMock).findOne(LivroBusinessReadIT.this.ID);
 
             this.will(throwException(new EngineRuntimeException(MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS)));
          }
 
       });
 
+      LivroBusiness business = new LivroBusiness(repositoryMock);
+
       try {
 
-         new LivroBusiness(repositoryMock).delete(this.LIVRO_COM_ID);
+         business.read(this.LIVRO_FILTER_COM_ID);
 
          fail(EXCEPTION_DEVERIA_TER_SIDO_LANCADA);
 
@@ -87,21 +100,17 @@ public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
    }
 
    @Test
-   public void testDelete() {
+   public void testRead() {
 
-      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
+      LivroDTO livroDTO = this.business.read(this.LIVRO_FILTER_COM_ID);
 
-      this.context.checking(new Expectations() {
+      assertEquals(this.LIVRO_PARA_LEITURA.getId(), livroDTO.getId());
 
-         {
+      assertEquals(this.LIVRO_PARA_LEITURA.getTitulo(), livroDTO.getTitulo());
 
-            this.one(repositoryMock).delete(LivroBusinessDeleteTest.this.ID);
-         }
+      assertEquals(this.LIVRO_PARA_LEITURA.getAutor(), livroDTO.getAutor());
 
-      });
-
-      new LivroBusiness(repositoryMock).delete(this.LIVRO_COM_ID);
-
-      this.context.assertIsSatisfied();
+      assertEquals(this.LIVRO_PARA_LEITURA.getGenero(), livroDTO.getGenero());
    }
+
 }

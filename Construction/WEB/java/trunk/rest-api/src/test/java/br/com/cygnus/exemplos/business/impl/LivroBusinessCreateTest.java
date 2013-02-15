@@ -4,9 +4,6 @@ import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.EXCEPTION_DEV
 import static br.com.cygnus.exemplos.commons.helper.MensagemHelper.MENSAGEM_ERRO_PADRAO_PARA_EXCEPTIONS;
 import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import javax.annotation.Resource;
 
 import org.jmock.Expectations;
 import org.jmock.Mockery;
@@ -14,20 +11,12 @@ import org.jmock.lib.legacy.ClassImposteriser;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:applicationContext.xml")
 public class LivroBusinessCreateTest extends LivroBusinessTestBase {
-
-   @Resource
-   private LivroBusiness business;
 
    private Mockery context;
 
@@ -40,6 +29,7 @@ public class LivroBusinessCreateTest extends LivroBusinessTestBase {
 
             this.setImposteriser(ClassImposteriser.INSTANCE);
          }
+
       };
    }
 
@@ -52,7 +42,7 @@ public class LivroBusinessCreateTest extends LivroBusinessTestBase {
    @Test(expected = IllegalArgumentException.class)
    public void testCreateQuandoParametroInvalidoNull() {
 
-      this.business.create(null);
+      new LivroBusiness().create(null);
    }
 
    @Test
@@ -90,8 +80,19 @@ public class LivroBusinessCreateTest extends LivroBusinessTestBase {
    @Test
    public void testCreate() {
 
-      this.business.create(this.LIVRO_PARA_INCLUSAO);
+      final LivroRepository repositoryMock = this.context.mock(LivroRepository.class);
 
-      assertTrue(Boolean.TRUE);
+      this.context.checking(new Expectations() {
+
+         {
+
+            this.one(repositoryMock).save(this.with(any(Livro.class)));
+         }
+
+      });
+
+      new LivroBusiness(repositoryMock).create(this.LIVRO_PARA_INCLUSAO);
+
+      this.context.assertIsSatisfied();
    }
 }
