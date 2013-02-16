@@ -1,5 +1,6 @@
 package br.com.cygnus.exemplos.helper;
 
+import static org.junit.Assert.assertTrue;
 import helper.DaoTestHelper;
 
 import java.util.ArrayList;
@@ -14,11 +15,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.helper.CarroFromFile;
-import br.com.cygnus.exemplos.helper.LoadDataBase;
 import br.com.cygnus.exemplos.persistence.model.Carro;
 
-public class LoadDataBaseTest extends DaoTestHelper {
+public class LoadDataBaseIT extends DaoTestHelper {
 
    private Mockery context;
 
@@ -100,6 +99,7 @@ public class LoadDataBaseTest extends DaoTestHelper {
 
       new LoadDataBase().load(this.getEntityManager());
 
+      assertTrue(Boolean.TRUE);
    }
 
    private List<Carro> listarCarros() {
