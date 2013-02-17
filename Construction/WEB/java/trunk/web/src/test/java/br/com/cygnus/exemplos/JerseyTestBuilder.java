@@ -27,12 +27,11 @@ public class JerseyTestBuilder {
 
    private final Collection<Object> resources = new HashSet<Object>();
 
-   private Integer port = Integer.valueOf(8088);
+   private Integer port = Integer.valueOf(8090);
 
    public static JerseyTestBuilder createJerseyTestBuilder() {
 
       return new JerseyTestBuilder().addResource(new EngineExceptionMapper());
-
    }
 
    public JerseyTestBuilder withPort(int port) {
@@ -40,7 +39,6 @@ public class JerseyTestBuilder {
       this.port = port;
 
       return this;
-
    }
 
    public JerseyTestBuilder addResource(Object resource) {
@@ -48,13 +46,11 @@ public class JerseyTestBuilder {
       this.resources.add(resource);
 
       return this;
-
    }
 
    public JerseyTest build() {
 
       return new EngineJerseyTest();
-
    }
 
    class EngineJerseyTest extends JerseyTest {
@@ -63,7 +59,6 @@ public class JerseyTestBuilder {
       protected TestContainerFactory getTestContainerFactory() throws TestContainerException {
 
          return new GrizzlyTestContainerFactory();
-
       }
 
       @Override
@@ -76,7 +71,6 @@ public class JerseyTestBuilder {
          } else {
 
             return JerseyTestBuilder.this.port;
-
          }
 
       }
