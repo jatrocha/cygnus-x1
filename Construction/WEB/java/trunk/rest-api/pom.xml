@@ -106,10 +106,11 @@
 
 
 						<configuration>
-							<url>http://hal9000.cygnus-x1.com.br:8088/manager/html</url>
+							<url>http://localhost:8088/manager/html</url>
 							<server>TomcatServer</server>
 							<username>admin</username>
 							<password>up64z8</password>
+							<port>8088</port>
 							<path>/rest-api</path>
 							<update>true</update>
 						</configuration>
