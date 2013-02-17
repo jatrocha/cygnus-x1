@@ -96,19 +96,18 @@
 
 				<plugins>
 					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>tomcat-maven-plugin</artifactId>
-						<version>1.1</version>
+						<groupId>org.apache.tomcat.maven</groupId>
+						<artifactId>tomcat7-maven-plugin</artifactId>
+						<version>2.0</version>
+						
 						<configuration>
 							<url>http://localhost:8088/manager/html</url>
-							<server>TomcatServer</server>
 							<username>admin</username>
 							<password>up64z8</password>
-							<port>8088</port>
 							<path>/rest-api</path>
 							<update>true</update>
+							<port>8088</port>
 						</configuration>
-
 					</plugin>
 
 				</plugins>
@@ -325,6 +324,10 @@
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>c3p0</groupId>
