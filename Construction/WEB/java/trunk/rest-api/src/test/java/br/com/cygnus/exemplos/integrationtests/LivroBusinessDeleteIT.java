@@ -1,4 +1,4 @@
-package br.com.cygnus.exemplos.business.impl;
+package br.com.cygnus.exemplos.integrationtests;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.cygnus.exemplos.business.impl.LivroBusiness;
+import br.com.cygnus.exemplos.business.impl.LivroBusinessTestBase;
 import br.com.cygnus.exemplos.helper.InitMongoDB;
 
 @RunWith(SpringJUnit4ClassRunner.class)
