@@ -25,34 +25,6 @@ public abstract class LivroBusinessTestBase {
 
    protected final LivroFilterDTO LIVRO_FILTER_COM_ID = LivroFilterDTO.buildWith(this.ID);
 
-   protected final Livro LIVRO_PARA_LEITURA = new Livro(this.ID, "titulo", "autor", "genero");
+   protected final Livro LIVRO_PARA_LEITURA = new Livro(this.ID, "A Moreninha", "Machado de Assis", "Ficcao");
 
-   // private static MongodExecutable mongodExecutable;
-   // private static MongodProcess mongodProcess;
-   // private static Mongo mongo;
-   // private static MongoTemplate mongoTemplate;
-   //
-   // @BeforeClass
-   // public static void before() throws Exception {
-   //
-   // MongodStarter runtime = MongodStarter.getDefaultInstance();
-   //
-   // mongodExecutable = runtime.prepare(new MongodConfig(Version.V2_0_6, 27017, Network.localhostIsIPv6()));
-   //
-   // mongodProcess = mongodExecutable.start();
-   //
-   // mongo = new Mongo("localhost", 27017);
-   //
-   // mongoTemplate = new MongoTemplate(mongo, "exemplos");
-   //
-   // new InitMongoDB(mongoTemplate).init();
-   // }
-   //
-   // @AfterClass
-   // public static void destroy() throws Exception {
-   //
-   // mongodProcess.stop();
-   //
-   // mongodExecutable.stop();
-   // }
 }
