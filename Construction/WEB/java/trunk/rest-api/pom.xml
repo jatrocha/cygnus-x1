@@ -98,11 +98,22 @@
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
+						<!-- <configuration> -->
+						<!-- <url>http://localhost:8088/manager/html</url> -->
+						<!-- <port>8088</port> -->
+						<!-- <path>/rest-api</path> -->
+						<!-- </configuration> -->
+
+
 						<configuration>
-							<url>http://localhost:8088/manager/html</url>
-							<port>8088</port>
+							<url>http://hal9000.cygnus-x1.com.br:8088/manager/html</url>
+							<server>TomcatServer</server>
+							<username>admin</username>
+							<password>up64z8</password>
 							<path>/rest-api</path>
+							<update>true</update>
 						</configuration>
+
 					</plugin>
 
 				</plugins>
@@ -185,11 +196,11 @@
 					</plugin>
 
 				</plugins>
-				
+
 			</build>
-			
+
 		</profile>
-		
+
 	</profiles>
 
 
