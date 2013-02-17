@@ -32,8 +32,6 @@ public class LivroBusinessReadIT extends LivroBusinessTestBase {
    @Test
    public void testRead() {
 
-      this.initMongo.init();
-
       LivroDTO livroDTO = this.business.read(this.LIVRO_FILTER_COM_ID);
 
       assertEquals(this.LIVRO_PARA_LEITURA.getId(), livroDTO.getId());
