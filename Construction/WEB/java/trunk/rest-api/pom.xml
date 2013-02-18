@@ -57,7 +57,7 @@
 
 					<connectors>
 						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-							<port>8088</port>
+							<port>8081</port>
 							<maxIdleTime>60000</maxIdleTime>
 						</connector>
 					</connectors>
@@ -97,12 +97,12 @@
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<configuration>
-							<url>http://localhost:8088/manager/html</url>
+							<url>http://localhost:8081/manager/html</url>
 							<username>admin</username>
 							<password>up64z8</password>
 							<path>/rest-api</path>
 							<update>true</update>
-							<port>8088</port>
+							<port>8081</port>
 						</configuration>
 					</plugin>
 
