@@ -86,12 +86,15 @@
 				<plugins>
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
-						<configuration>
-							<url>http://localhost:8081/manager/html</url>
-							<port>8081</port>
-							<path>/exemplos</path>
-						</configuration>
+						<artifactId>tomcat6-maven-plugin</artifactId>
+                  <configuration>
+                     <url>http://localhost:8081/manager/html</url>
+                     <username>admin</username>
+                     <password>up64z8</password>
+                     <path>/rest-api</path>
+                     <update>true</update>
+                     <port>8081</port>
+                  </configuration>
 					</plugin>
 
 				</plugins>

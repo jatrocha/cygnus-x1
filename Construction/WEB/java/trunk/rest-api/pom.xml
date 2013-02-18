@@ -95,7 +95,7 @@
 				<plugins>
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
-						<artifactId>tomcat7-maven-plugin</artifactId>
+						<artifactId>tomcat6-maven-plugin</artifactId>
 						<configuration>
 							<url>http://localhost:8081/manager/html</url>
 							<username>admin</username>
