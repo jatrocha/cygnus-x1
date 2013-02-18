@@ -4,7 +4,7 @@
 
 	<groupId>examples</groupId>
 	<artifactId>rest-api</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.0.3-SNAPSHOT</version>
 
 	<packaging>war</packaging>
 
@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>examples</groupId>
 		<artifactId>examples</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.3-SNAPSHOT</version>
 	</parent>
 
 	<scm>
@@ -37,7 +37,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
 				<configuration>
 					<attachClasses>true</attachClasses>
 					<classesClassifier>classes</classesClassifier>
@@ -82,7 +81,6 @@
 				<dependency>
 					<groupId>org.apache.geronimo.specs</groupId>
 					<artifactId>geronimo-javamail_1.3.1_spec</artifactId>
-					<version>1.3</version>
 					<scope>provided</scope>
 				</dependency>
 
@@ -98,8 +96,6 @@
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
-						<version>2.0</version>
-
 						<configuration>
 							<url>http://localhost:8088/manager/html</url>
 							<username>admin</username>
@@ -126,7 +122,6 @@
 					<plugin>
 						<groupId>com.github.joelittlejohn.embedmongo</groupId>
 						<artifactId>embedmongo-maven-plugin</artifactId>
-						<version>0.1.5</version>
 						<executions>
 							<execution>
 								<id>start</id>
@@ -150,50 +145,6 @@
 						</executions>
 					</plugin>
 
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.13</version>
-
-						<executions>
-
-							<execution>
-								<id>integration-test</id>
-								<goals>
-									<goal>integration-test</goal>
-								</goals>
-
-								<configuration>
-									<includes>
-										<include>**/*IT.java</include>
-									</includes>
-									<excludes>
-										<exclude>**/*Test.java</exclude>
-									</excludes>
-								</configuration>
-
-							</execution>
-
-							<execution>
-								<id>verify</id>
-
-								<goals>
-									<goal>verify</goal>
-								</goals>
-
-								<configuration>
-									<includes>
-										<include>**/*IT.java</include>
-									</includes>
-									<excludes>
-										<exclude>**/*Test.java</exclude>
-									</excludes>
-								</configuration>
-							</execution>
-
-						</executions>
-
-					</plugin>
 
 				</plugins>
 
@@ -356,7 +307,6 @@
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongo-java-driver</artifactId>
-			<version>2.10.1</version>
 			<type>jar</type>
 		</dependency>
 
@@ -419,7 +369,6 @@
 		<dependency>
 			<groupId>de.flapdoodle.embed</groupId>
 			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-			<version>1.28</version>
 			<scope>test</scope>
 		</dependency>
 
