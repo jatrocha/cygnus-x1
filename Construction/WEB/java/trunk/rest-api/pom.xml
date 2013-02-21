@@ -110,7 +110,7 @@
 
 		<profile>
 
-			<id>stage1</id>
+			<id>stage01</id>
 
 			<dependencies>
 
@@ -134,12 +134,12 @@
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
 						<configuration>
-							<url>http://192.168.25.14:8088/manager/html</url>
+							<url>http://stage01:8090/manager/html</url>
 							<username>admin</username>
 							<password>up64z8</password>
 							<path>/rest-api</path>
 							<update>true</update>
-							<port>8088</port>
+							<port>8090</port>
 						</configuration>
 					</plugin>
 
