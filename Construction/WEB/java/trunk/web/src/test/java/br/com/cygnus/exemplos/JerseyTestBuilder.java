@@ -7,7 +7,7 @@ import java.util.HashSet;
 
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
-import br.com.cygnus.exemplos.commons.exception.EngineExceptionMapper;
+import br.com.cygnus.framework.exception.EngineExceptionMapper;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.config.ClientConfig;

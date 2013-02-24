@@ -12,8 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 public class LivroBusinessDeleteTest extends LivroBusinessTestBase {
 

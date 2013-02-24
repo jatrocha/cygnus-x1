@@ -16,8 +16,8 @@ import br.com.cygnus.exemplos.JerseyTestBuilder;
 import br.com.cygnus.exemplos.business.impl.CarroBusiness;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.resources.CarroResource;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 import com.sun.jersey.test.framework.JerseyTest;
 

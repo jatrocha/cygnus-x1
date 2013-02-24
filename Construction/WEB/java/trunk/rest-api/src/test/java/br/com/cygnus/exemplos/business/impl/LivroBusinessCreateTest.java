@@ -12,9 +12,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 public class LivroBusinessCreateTest extends LivroBusinessTestBase {
 

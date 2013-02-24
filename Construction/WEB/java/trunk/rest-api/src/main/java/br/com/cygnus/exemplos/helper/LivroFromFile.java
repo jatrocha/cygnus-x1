@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Livro;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 /**
  * Carrega a relacao de {@link Livro} a partir de um arquivo texto.

@@ -10,8 +10,8 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 
 import br.com.cygnus.exemplos.commons.enums.Marca;
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Carro;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 /**
  * Utilitario que carrega de um arquivo texto, os dados de um {@link Carro}.

@@ -3,7 +3,7 @@ package br.com.cygnus.exemplos.service.client;
 import javax.ws.rs.core.MediaType;
 
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
-import br.com.cygnus.exemplos.commons.service.RESTServiceAdapter;
+import br.com.cygnus.framework.service.RESTServiceAdapter;
 
 import com.sun.jersey.api.client.ClientResponse;
 

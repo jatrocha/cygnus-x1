@@ -18,8 +18,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.com.cygnus.exemplos.commons.enums.Marca;
-import br.com.cygnus.exemplos.commons.exception.EngineRuntimeException;
 import br.com.cygnus.exemplos.persistence.model.Carro;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 
 public class CarroFromFileTest {
 
