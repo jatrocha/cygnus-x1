@@ -20,7 +20,7 @@ import com.sun.jersey.api.client.filter.LoggingFilter;
 import com.sun.jersey.api.json.JSONConfiguration;
 
 /**
- * Implementação padrão do Adaptador de serviços REST.
+ * Implementacao padrao do Adaptador de servicos REST.
  * 
  * //TODO provavelmente esta classe seja movida para o projeto framework.
  */
@@ -49,7 +49,7 @@ public abstract class RESTServiceAdapter {
    }
 
    /**
-    * Combina o caminho absoluto da WebResource com o caminho padrão da aplicação, que pode ser encontrado no arquivo de configurações.
+    * Combina o caminho absoluto da WebResource com o caminho padrao da aplicacao, que pode ser encontrado no arquivo de configuracoes.
     * 
     * @param path {@link String} contendo o caminho do metodo desejado.
     * @return {@link WebResource} configurado.
