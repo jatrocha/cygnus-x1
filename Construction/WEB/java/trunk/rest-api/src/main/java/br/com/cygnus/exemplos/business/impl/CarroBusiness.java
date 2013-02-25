@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.cygnus.exemplos.business.DataManipulation;
-import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
 import br.com.cygnus.exemplos.commons.dto.CarroFilterDTO;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.datastore.CarroDataStore;
 import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.framework.template.business.converter.Converter;
+import br.com.cygnus.framework.template.business.crud.DataManipulation;
+import br.com.cygnus.framework.template.business.crud.DataQuery;
 
 /**
  * Manipulacao de {@link CarroDTO}s.

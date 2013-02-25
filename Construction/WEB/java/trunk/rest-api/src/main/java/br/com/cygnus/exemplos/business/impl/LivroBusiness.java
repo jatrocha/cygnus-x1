@@ -8,13 +8,13 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
-import br.com.cygnus.exemplos.business.DataManipulation;
-import br.com.cygnus.exemplos.business.DataQuery;
 import br.com.cygnus.exemplos.commons.dto.LivroDTO;
 import br.com.cygnus.exemplos.commons.dto.LivroFilterDTO;
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.exemplos.persistence.repository.LivroRepository;
 import br.com.cygnus.framework.template.business.converter.Converter;
+import br.com.cygnus.framework.template.business.crud.DataManipulation;
+import br.com.cygnus.framework.template.business.crud.DataQuery;
 
 /**
  * Manipulacao de {@link LivroDTO}s.
