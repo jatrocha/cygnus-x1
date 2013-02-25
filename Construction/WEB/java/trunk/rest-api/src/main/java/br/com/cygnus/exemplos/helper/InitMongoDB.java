@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import br.com.cygnus.exemplos.persistence.model.Livro;
+import br.com.cygnus.framework.util.FileReaderUtil;
 
 /**
  * Service for initializing MongoDB with sample data using {@link MongoTemplate}.

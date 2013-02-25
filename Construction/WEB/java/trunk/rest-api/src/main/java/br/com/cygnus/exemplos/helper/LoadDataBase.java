@@ -6,6 +6,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 import br.com.cygnus.exemplos.persistence.model.Carro;
+import br.com.cygnus.framework.template.business.util.LoadFromFile;
+import br.com.cygnus.framework.util.FileReaderUtil;
 
 /**
  * Carrega.

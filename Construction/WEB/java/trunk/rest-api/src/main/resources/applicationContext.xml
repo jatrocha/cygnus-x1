@@ -17,11 +17,11 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="br.com.cygnus.exemplos" />
-	
- 	<context:spring-configured />
 
-    <!-- NoSQL Database Configuration -->
-    <import resource="spring-data-mongo.xml" />
+	<context:spring-configured />
+
+	<!-- NoSQL Database Configuration -->
+	<import resource="spring-data-mongo.xml" />
 
     <!-- RDBMS Database Configuration -->
     <import resource="spring-data-rdbms.xml" />

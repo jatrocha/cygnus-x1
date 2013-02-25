@@ -11,6 +11,7 @@ import org.apache.commons.lang.StringUtils;
 
 import br.com.cygnus.exemplos.persistence.model.Livro;
 import br.com.cygnus.framework.exception.EngineRuntimeException;
+import br.com.cygnus.framework.template.business.util.LoadFromFile;
 
 /**
  * Carrega a relacao de {@link Livro} a partir de um arquivo texto.

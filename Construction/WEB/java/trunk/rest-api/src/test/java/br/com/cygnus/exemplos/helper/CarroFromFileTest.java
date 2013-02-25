@@ -20,6 +20,7 @@ import org.junit.Test;
 import br.com.cygnus.exemplos.commons.enums.Marca;
 import br.com.cygnus.exemplos.persistence.model.Carro;
 import br.com.cygnus.framework.exception.EngineRuntimeException;
+import br.com.cygnus.framework.template.business.util.LoadFromFile;
 
 public class CarroFromFileTest {
 
