@@ -12,7 +12,7 @@
 	<!-- For parsing classes with @Aspect annotation -->
 	<aop:aspectj-autoproxy/>
 
-	<bean id="customizableTraceInterceptor" class="br.com.cygnus.exemplos.helper.TraceInterceptor"
+	<bean id="customizableTraceInterceptor" class="br.com.cygnus.framework.interceptor.TraceInterceptor"
 		p:enterMessage="Entering $[targetClassShortName].$[methodName]($[arguments])"
 		p:exitMessage="Leaving $[targetClassShortName].$[methodName](): $[returnValue]"/>
 
