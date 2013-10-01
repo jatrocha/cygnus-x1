@@ -32,7 +32,7 @@
 			
 			$.ajax({
 				  type: "GET",
-				  url: "http://localhost:8081/examples/CarroServlet",
+				  url: "http://localhost:8090/rest-api/carro/query",
 				  dataType: "json",
 				  error: function(jqXHR, textStatus, errorThrown){
 					  alert(errorThrown);

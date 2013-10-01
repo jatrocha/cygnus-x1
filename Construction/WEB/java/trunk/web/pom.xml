@@ -87,14 +87,14 @@
 					<plugin>
 						<groupId>org.apache.tomcat.maven</groupId>
 						<artifactId>tomcat7-maven-plugin</artifactId>
-                  <configuration>
-                     <url>http://localhost:8081/manager/html</url>
-                     <username>admin</username>
-                     <password>up64z8</password>
-                     <path>/rest-api</path>
-                     <update>true</update>
-                     <port>8081</port>
-                  </configuration>
+						<configuration>
+							<url>http://localhost:8081/manager/html</url>
+							<username>admin</username>
+							<password>up64z8</password>
+							<path>/rest-api</path>
+							<update>true</update>
+							<port>8081</port>
+						</configuration>
 					</plugin>
 
 				</plugins>
@@ -168,6 +168,53 @@
 			<artifactId>jersey-test-framework-grizzly2</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>2.35.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-firefox-driver</artifactId>
+			<version>2.35.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-htmlunit-driver</artifactId>
+			<version>2.35.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.2.3</version>
+		</dependency>
+
+        <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-core</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.jwebunit</groupId>
+            <artifactId>jwebunit-htmlunit-plugin</artifactId>
+            <version>3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sourceforge.htmlunit</groupId>
+            <artifactId>htmlunit</artifactId>
+            <version>2.9</version>
+            <scope>test</scope>
+        </dependency>
 
 	</dependencies>
 
