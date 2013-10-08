@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class FrontendIT {
+public class FrontendHeadlessIT {
 
    private WebDriver browser;
 
@@ -41,6 +41,6 @@ public class FrontendIT {
 
    @After
    public void tearDown() {
-      // this.browser.close();
+      this.browser.quit();
    }
 }
