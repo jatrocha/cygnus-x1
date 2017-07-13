@@ -11,7 +11,7 @@ import com.sun.jersey.api.client.GenericType;
 /**
  * Adaptador de servico <code>REST</code> para consulta de {@link CarroDTO}.
  */
-public class CarroQueryServiceAdapter extends RESTServiceAdapter {
+public class CarroQueryServiceAdapter extends AbstractRestServiceAdapter {
 
    private static final String URI_CARRO_LIST = "/carro/query";
 

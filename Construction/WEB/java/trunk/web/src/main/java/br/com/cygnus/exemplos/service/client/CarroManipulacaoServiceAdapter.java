@@ -3,6 +3,7 @@ package br.com.cygnus.exemplos.service.client;
 import javax.ws.rs.core.MediaType;
 
 import br.com.cygnus.exemplos.commons.dto.CarroDTO;
+import br.com.cygnus.framework.exception.EngineRuntimeException;
 import br.com.cygnus.framework.service.RESTServiceAdapter;
 
 import com.sun.jersey.api.client.ClientResponse;
@@ -10,7 +11,7 @@ import com.sun.jersey.api.client.ClientResponse;
 /**
  * Adaptador de servico <code>REST</code> para consulta de {@link CarroDTO}.
  */
-public class CarroManipulacaoServiceAdapter extends RESTServiceAdapter {
+public class CarroManipulacaoServiceAdapter extends AbstractRestServiceAdapter {
 
    private static final String URI_CARRO = "/carro";
 
